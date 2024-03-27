@@ -1,0 +1,169 @@
+
+/*encabezado*******************************************************/
+.home_encabezado{
+    width: 100%;
+    display: flex;
+    /* background-color: red; */
+}
+
+
+
+
+.home_encabezado_title_name{
+    width: 50%;
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 10%;
+}
+
+.home_encabezado_title_name h2{
+   
+    color: var(--colorBaseVeterinaria);
+    font-family: var( --Permanent-Marker);
+    font-weight: 900;
+    font-style: normal;
+    font-size: 60px;
+ 
+}
+
+.home_encabezado_title_name h3{
+   
+    color: var(--colorSecundarioVeterinaria);
+    font-family: var( --Permanent-Marker);
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.home_encabezado_title_name p{
+  width: 85%;
+  margin-top: 20px;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-style: cursive;
+  font-size: 19px;
+}
+
+
+.home_encabezado_foto{
+    width: 50%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_encabezado_foto img{
+    width: 80%;
+   
+}
+
+
+
+.home_encabezado_agendarCita_button:hover{
+
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.home_encabezado_button{
+    color: white;
+    text-decoration: none;
+
+
+    width: 200px;
+    height: 40px;
+    border: none;
+    background: linear-gradient(90deg, var(--colorBaseVeterinaria), #2361F8);
+    border-radius: 20px;
+    color: white;
+    font-family: var(--Alegreya-Sans);
+    
+    font-weight: 500;
+    font-size: 15px;
+    font-style: bold;
+    margin-top: 30px;
+    transition: 1s ease;
+    text-align: center;
+    padding: 10px;
+}
+
+.home_encabezado_button i{
+    color: white;
+    
+}
+
+.home_encabezado_button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+/*encabezado*******************************************************/
+
+
+
+
+
+
+
+
+
+@media all and (max-width:1080px){
+
+    
+    .home_encabezado{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
+    .home_encabezado_title_name{
+        width: 100%;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-left: 0%;
+        margin-top: 50px;
+    }
+
+    .home_encabezado_title_name{
+        width: 100%;
+        /* background-color: yellow; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0%;
+        order: 2;
+    }
+
+    .home_encabezado_title_name h2{
+        font-size: 40px;
+    }
+    
+    .home_encabezado_title_name h3{
+        font-size: 15px;
+    }
+
+    .home_encabezado_title_name p{
+        font-size: 12px;
+        text-align: center;
+        width: 80%;
+    }
+
+    .home_encabezado_foto{
+        order: 1;
+        width: 70%;
+        margin-top: 20px;
+    }
+
+
+}

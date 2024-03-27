@@ -1,0 +1,325 @@
+/*
+.agendarCita{
+    background-color: red;
+}
+*/
+
+.container_logoutSesion_agendarCita{
+    text-align: end;
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+.container_logoutSesion_agendarCita button{
+    color: white;
+    text-decoration: none;
+    border: none;
+    background-color: var(--colorAdvertencia);
+    border-radius: 20px;
+    font-family: var(--Alegreya-Sans);
+    font-weight: 500;
+    font-size: 15px;
+    font-style: bold;
+    transition: 1s ease;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.container_logoutSesion_agendarCita button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.container_logoutSesion_agendarCita i{
+    color: white;
+}
+
+
+
+.bienvenida_agendarCita{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.bienvenida_agendarCita h2{
+    color: var(--colorBaseVeterinaria);
+    font-family: var( --Permanent-Marker);
+    font-weight: 900;
+    font-style: normal;
+    font-size: 35px;
+}
+
+.bienvenida_agendarCita p{
+    color: var(--colorSecundarioVeterinaria);
+    font-family: var( --Permanent-Marker);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px; 
+}
+
+
+
+
+/*calendario desde aqui *********************************************/
+
+
+
+.containerCalendar{
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  width: 98%;
+
+
+  height: 450px;
+
+
+  max-width: 1000px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*calendar **********************/
+
+h1 {
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+h3 {
+  font-weight: 600;
+}
+
+.calendar {
+  
+  width: 60%;
+  max-width: 800px;
+  padding: 50px;
+  background: var(--colorFondoBody);
+  
+
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+/* asi estaba antes de agregar las citas
+.calendar {
+  margin: auto;
+  width: 98%;
+  max-width: 800px;
+  padding: 50px;
+  background: var(--colorFondoBody);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+*/
+.calendar header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.calendar nav {
+  display: flex;
+  align-items: center;
+}
+.calendar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.calendar ul li {
+  width: calc(100% / 7);
+  margin-top: 25px;
+  position: relative;
+  z-index: 2;
+  /* color: red; */
+}
+#prev,
+#next {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+#prev::before,
+#next::before {
+  content: "";
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  border-color: #ccc;
+}
+#next::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+#prev::before {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+#prev:hover::before,
+#next:hover::before {
+  border-color: #000;
+}
+.days {
+  font-weight: 600;
+}
+.dates li.today {
+  color: #fff;
+}
+.dates li.today::before {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  border-radius: 50%;
+  z-index: -1;
+}
+.dates li.inactive {
+  color: #ccc;
+}
+
+
+
+
+
+/*citas *****************/
+
+.container_citas{
+  background-color: var(--colorFondoBody);
+  width: 40%;
+
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  border-left: 1px solid var(--lineadivisora);
+  margin: 20px 0;
+  
+ 
+}
+
+.citas{
+ 
+   
+  height: 90%;
+  padding: 20px;
+  
+  
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.citas::-webkit-scrollbar {
+  display: none; /* Oculta el scrollbar en navegadores webkit */
+}
+
+
+
+
+.cita{
+
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  background-color: var(--colorFondoBody);
+
+  
+  /* background-color: yellow; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.cita p{
+ margin-bottom: 10px;
+}
+
+.boton_agregarCita{
+  height: 10%;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+
+
+
+.boton_agregarCita button{
+  width: 50%;
+  margin-top: 10px;
+
+
+  color: white;
+  text-decoration: none;
+  border: none;
+  background-color: var(--colorBaseVeterinaria);
+  border-radius: 15px;
+  font-family: var(--Alegreya-Sans);
+  font-weight: 500;
+  font-size: 15px;
+  font-style: bold;
+  transition: 1s ease;
+  text-align: center;
+  padding: 7px 0;
+}
+
+.boton_agregarCita button:hover{
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.boton_agregarCita i{
+  color: white;
+}
+
+
+@media all and (max-width:870px){
+
+  .containerCalendar{
+    flex-direction: column;
+    height: auto;
+  }
+
+  .container_citas{
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--lineadivisora);
+    border-radius: 0;
+    max-height: 450px;
+  }
+
+  .citas{
+    max-height: 400px;
+  }
+
+  .calendar {
+    width: 100%;
+    padding: 1rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 15px;
+  }
+
+}

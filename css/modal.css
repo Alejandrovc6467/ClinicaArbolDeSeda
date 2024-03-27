@@ -1,0 +1,72 @@
+
+/*ajustes container modal*/
+.modalNotificacion_container {
+    z-index: 99999; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    padding: 0 15px;
+}
+
+.modalNotificacion_container.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(10, 10, 10, 0.43);
+}
+
+
+.modalNotificacion {
+
+    width: 85%;
+    max-width: 400px;
+    height: auto;
+    background-color: var(--colorFondoBody);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 25px;
+    text-align: center;
+}
+
+.modalNotificacion i{
+   color: var(--colorAdvertencia);
+ }
+
+.modalNotificacion p{
+   margin: 30px 0;
+}
+
+
+.modalNotificacion button{
+    width: 50%;
+    color: white; 
+    background-color: var(--colorBaseVeterinaria); 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 15px; 
+    cursor: pointer;
+    font-size: 16px; 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.modalNotificacion button:hover{
+    transform: scale(1.1);
+}
+
+
+@media all and (max-width:450px){
+
+    .modalNotificacion {
+        height: auto;
+    }
+}
+
+
+
+
+
+/* Modal standard *************************************************/

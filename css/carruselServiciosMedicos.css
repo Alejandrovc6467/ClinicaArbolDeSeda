@@ -1,0 +1,69 @@
+.sliderserviciosMedicos {
+    width: 75vw;
+    max-width: 1920px;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    margin-bottom: 75px;
+    margin-top: 30px;
+}
+
+.sliderserviciosMedicos .slide-track {
+    display: flex;
+    /* animation: scroll 40s linear infinite; */
+    /* -webkit-animation: scroll 40s linear infinite; */
+    width: calc(200px * 14);
+}
+
+.sliderserviciosMedicos .slide {
+    width: 250px;
+    height: 230px;
+    background-color: var(--colorFondoBody);
+    margin: 20px 15px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.servicioMedicoSlide_iconContainer{
+    background-color: var(--colorBaseVeterinaria);
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.slide i{
+    color: white;
+}
+
+.slide h4{
+    color: var(--colorSecundarioVeterinaria);
+    font-family: sans-serif;
+    margin-bottom: 10px;
+}
+
+
+.serviciosMedicos{
+    animation: scrollpat 30s linear infinite;
+   -webkit-animation: scrollpat 30s linear infinite;
+}
+
+
+
+/*para patrocinadores*/
+@keyframes scrollpat {
+    0% {
+        /* Cambiar translateX para que empiece desde la derecha */
+        -webkit-transform: translateX(calc(-200px * 7));
+        transform: translateX(calc(-200px * 7));
+    }
+    100% {
+        /* Cambiar translateX para que termine en la derecha */
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}

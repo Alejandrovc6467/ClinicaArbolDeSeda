@@ -1,0 +1,113 @@
+.registrarUsuario{
+    display: flex;
+    justify-content: center;
+
+    /* background-color: yellow; */
+}
+
+.registroUsuario_containerInputs{
+    /* background-color: red; */
+    width: 100%;
+    margin-bottom: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+
+.registrarUsuario form{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 70%;
+    padding:  50px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   
+    background-color: var(--colorFondoBody);
+}
+
+
+.registrarUsuario .containerInput{
+    display: flex;
+    flex-direction: column;
+   
+    margin: 0 15px 30px 15px;
+}
+
+.registrarUsuario label {
+    
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    color: var(--colorTextoP);
+}
+
+.registrarUsuario input {
+   
+    border: 1px solid #ccc;
+    background-color: var(--colorFondoBody); 
+    padding: 8px; 
+    font-size: 16px; 
+    border-radius: 15px;
+    outline: none; 
+    color: var(--colorstitulotargetas);
+    width: 100%;
+}
+
+
+
+.registrarUsuario input[type="submit"] {
+    width: 250px;
+    color: white; 
+    background-color: var(--colorBaseVeterinaria); 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 15px; 
+    cursor: pointer;
+    font-size: 16px; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 30px;
+}
+
+
+
+@media all and (max-width:1200px){
+
+    .registrarUsuario{
+        margin-top: 50px;
+    }
+    
+    .registroUsuario_containerInputs{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .registrarUsuario form{
+        width: 80%; 
+    }
+
+}
+
+
+@media all and (max-width:735px){
+
+
+    .registrarUsuario form{
+        width: 95%;
+        padding:  50px 25px; 
+    }
+   
+    .registrarUsuario input[type="submit"] {
+        width: 80%;
+    }
+
+    .registroUsuario_containerInputs{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+

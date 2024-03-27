@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/iconWebSite.png">
+    <title>Clinica Arbol de Seda</title>
+
+    <!--text fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+	<!--Style animation-->
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+	<!--iconos-->
+	<script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+
+    <!-- My css -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css?2323">
+    <link rel="stylesheet" href="css/home.css?5454">
+    <link rel="stylesheet" href="css/login.css?5454">
+    <link rel="stylesheet" href="css/registroUsuarios.css">
+    <link rel="stylesheet" href="css/agendarCita.css?1">
+    <link rel="stylesheet" href="css/carruselServiciosMedicos.css?81">
+    <link rel="stylesheet" href="css/footer.css?2">    
+
+
+</head>
+
+<body>
+
+    <script src="js/autorizacionLogueo.js"></script>
+
+
+    <header class="header" id="header">
+
+        <a href="index.html" class="navBar_logo">Árbol de Seda<i class="fa-solid fa-tree fa-lg"></i></a>
+
+        <input type="checkbox" id="check">
+        <label for="check" class="navbar_icons">
+            <i class="fa-solid fa-bars fa-lg icon_abrir" id="botonAbrirNav"></i>
+            <i class="fa-solid fa-xmark fa-lg icon_cerrar" id="botonCerrarNav"></i>
+        </label>
+
+        <nav class="navbar">
+            <a href="login.html">Inicio de sesión</a>
+            <a href="agendarCita.html">Agendar de citas</a>
+            <a href="inicioSesion.html">Búsqueda de médicos</a>
+            <a href="index.html">Servicios</a>
+            <a href="index.html">Sobre nosotros</a>
+        </nav>
+        
+    </header>
+
+    <main data-aos="fade-right" data-aos-duration="1500">
+
+       
+        <div class="agendarCita">
+
+            <div class="container_logoutSesion_agendarCita">
+                <button id="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</button>
+            </div>
+
+            <div class="bienvenida_agendarCita">
+                <h2>Bienvenido</h2>
+                <p id="bienvenida_nameUser"></p>
+            </div>
+
+
+            <div class="containerCalendar">
+
+                <div class="calendar">
+                    <header>
+                      <h3></h3>
+                      <nav>
+                        <button id="prev"></button>
+                        <button id="next"></button>
+                      </nav>
+                    </header>
+                    <section>
+                      <ul class="days">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                      </ul>
+                      <ul class="dates"></ul>
+                    </section>
+                </div>
+
+                <div class="container_citas">
+
+                    <div class="citas">
+
+                        <div class="cita">
+
+                            <p>fecha</p>
+                            <p>hora</p>
+                            <p>cedula user</p>
+                            <p>nombre user</p>
+                            <p>cedula medico</p>
+                            <p>nombre medico</p>
+                            <p>espialidad</p>
+                            <p>estado: pendiente / aprobada</p>
+
+                            <div class="botones_cita">
+                                <button>Actualizar</button>
+                                <button>Borrar</button>
+                                <button>aprobar</button>
+                            </div>
+
+                        </div>
+
+                        <div class="cita">
+                            
+                            <p>fecha</p>
+                            <p>hora</p>
+                            <p>cedula user</p>
+                            <p>nombre user</p>
+                            <p>cedula medico</p>
+                            <p>nombre medico</p>
+                            <p>espialidad</p>
+                            <p>estado: pendiente / aprobada</p>
+
+                            <div class="botones_cita">
+                                <button>Actualizar</button>
+                                <button>Borrar</button>
+                                <button>aprobar</button>
+                            </div>
+
+                        </div>
+
+                        <div class="cita">
+                            
+                            <p>fecha</p>
+                            <p>hora</p>
+                            <p>cedula user</p>
+                            <p>nombre user</p>
+                            <p>cedula medico</p>
+                            <p>nombre medico</p>
+                            <p>espialidad</p>
+                            <p>estado: pendiente / aprobada</p>
+
+                            <div class="botones_cita">
+                                <button>Actualizar</button>
+                                <button>Borrar</button>
+                                <button>aprobar</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    
+                    <div class="boton_agregarCita">
+                        <button><i class="fa-solid fa-circle-plus fa-lg"></i>Agendar nueva cita</button>
+                    </div>
+                    
+                </div>
+
+            </div> 
+
+            
+            
+
+        </div>
+
+    </main>
+
+    <footer class="mi-footer">
+        
+        <div class="mi-footer-contenido">
+         
+           <div class="footer_derechos">
+                <p>© 2024 Universidad de Costa Rica</p><br>
+           </div>
+
+           <div class="footer_redes">
+                <a href="">Contacto</a>
+                <a href="">Preguntas (FAQ)</a>
+                <a href="">Política de privacidad</a>
+           </div> 
+
+        </div>
+
+    </footer>
+
+
+    <div class="modalNotificacion_container" id="modalStandard_container">
+        <div class="modalNotificacion" id="modalNotificacion">
+            <i class="fa-solid fa-circle-info fa-2xl"></i>
+            <p id="modalNotificacion_text"></p>
+            <button id="cerrar_modalStandard">Cerrar</button>
+        </div>
+    </div>
+
+    
+
+    <!-- Js animation -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="js/StyleScript.js"></script>
+    <script src="js/getUsuariosMedicos.js?696"></script>
+    <script src="js/agendarCita.js?324"></script>
+   
+    <script>
+        logout();
+    </script>
+    
+   
+</body>
+
+</html>

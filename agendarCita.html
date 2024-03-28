@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="css/home.css?5454">
     <link rel="stylesheet" href="css/login.css?5454">
     <link rel="stylesheet" href="css/registroUsuarios.css">
-    <link rel="stylesheet" href="css/agendarCita.css?1">
+    <link rel="stylesheet" href="css/agendarCita.css?875">
+    <link rel="stylesheet" href="css/modal.css?721">
     <link rel="stylesheet" href="css/carruselServiciosMedicos.css?81">
     <link rel="stylesheet" href="css/footer.css?2">    
 
@@ -33,7 +34,7 @@
 
 <body>
 
-    <script src="js/autorizacionLogueo.js"></script>
+    <script src="js/autorizacionLogueo.js?314"></script>
 
 
     <header class="header" id="header">
@@ -83,13 +84,13 @@
                     </header>
                     <section>
                       <ul class="days">
-                        <li>Sun</li>
-                        <li>Mon</li>
-                        <li>Tue</li>
-                        <li>Wed</li>
-                        <li>Thu</li>
-                        <li>Fri</li>
-                        <li>Sat</li>
+                        <li>Dom</li>
+                        <li>Lun</li>
+                        <li>Mar</li>
+                        <li>Mié</li>
+                        <li>Jue</li>
+                        <li>Vie</li>
+                        <li>Sáb</li>
                       </ul>
                       <ul class="dates"></ul>
                     </section>
@@ -97,70 +98,16 @@
 
                 <div class="container_citas">
 
-                    <div class="citas">
+                    <div class="citas" id="citas">
 
-                        <div class="cita">
+                       
 
-                            <p>fecha</p>
-                            <p>hora</p>
-                            <p>cedula user</p>
-                            <p>nombre user</p>
-                            <p>cedula medico</p>
-                            <p>nombre medico</p>
-                            <p>espialidad</p>
-                            <p>estado: pendiente / aprobada</p>
-
-                            <div class="botones_cita">
-                                <button>Actualizar</button>
-                                <button>Borrar</button>
-                                <button>aprobar</button>
-                            </div>
-
-                        </div>
-
-                        <div class="cita">
-                            
-                            <p>fecha</p>
-                            <p>hora</p>
-                            <p>cedula user</p>
-                            <p>nombre user</p>
-                            <p>cedula medico</p>
-                            <p>nombre medico</p>
-                            <p>espialidad</p>
-                            <p>estado: pendiente / aprobada</p>
-
-                            <div class="botones_cita">
-                                <button>Actualizar</button>
-                                <button>Borrar</button>
-                                <button>aprobar</button>
-                            </div>
-
-                        </div>
-
-                        <div class="cita">
-                            
-                            <p>fecha</p>
-                            <p>hora</p>
-                            <p>cedula user</p>
-                            <p>nombre user</p>
-                            <p>cedula medico</p>
-                            <p>nombre medico</p>
-                            <p>espialidad</p>
-                            <p>estado: pendiente / aprobada</p>
-
-                            <div class="botones_cita">
-                                <button>Actualizar</button>
-                                <button>Borrar</button>
-                                <button>aprobar</button>
-                            </div>
-
-                        </div>
 
 
                     </div>
                     
-                    <div class="boton_agregarCita">
-                        <button><i class="fa-solid fa-circle-plus fa-lg"></i>Agendar nueva cita</button>
+                    <div class="container_boton_agregarCita ">
+                        <button id="boton_agregarCita" class="boton_agregarCita"><i class="fa-solid fa-circle-plus fa-lg"></i>Agendar nueva cita</button>
                     </div>
                     
                 </div>
@@ -193,13 +140,77 @@
     </footer>
 
 
-    <div class="modalNotificacion_container" id="modalStandard_container">
+    <div class="modalStandard_container" id="modalStandard_container">
+        <div class="modalStandard" id="modalStandard">
+            <div class="containerBotonCerrar_modalStandard">
+                <button class="containerBotonCerrar_modalStandard_button" id="cerrar_modalStandard">X</button>
+            </div>
+
+            <p id="fechaCitaAgendar" class="fechaCitaAgendar"></p>
+
+            <div class="container_agendarCita">
+
+                <form  id="agendarCita">
+    
+                    <div class="agendarCita_containerInputs">
+
+
+                        <div class="containerInput_agendarCita">
+                            <label for="fecha">Fecha:</label><br><br>
+                            <input type="text" id="fechaCitaInput" name="fecha" required>
+                        </div>
+    
+                        <div class="containerInput_agendarCita">
+                            <label for="hora">Hora:</label>
+                            <select id="hora" name="hora">
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                            </select>
+                        </div>
+
+                        <div class="containerInput_agendarCita">
+                            <label for="especialidad">Especialidad:</label>
+                            <select id="especialidad" name="especialidad">
+                                <option value="Cardiólogo">Cardiólogo</option>
+                                <option value="Neurólogo">Neurólogo</option>
+                            </select>
+                        </div>
+
+                        <div class="containerInput_agendarCita">
+                            <label for="medico">Médico:</label>
+                            <select id="medico" name="medico">
+                                <option value="3-0504-0220">3-0504-0220</option>
+                                <option value="3-0504-0265">3-0504-0265</option>
+                            </select>
+                        </div>
+
+                        
+
+    
+                    </div>
+    
+                    
+                    
+                    <input type="submit" value="Agendar Cita">
+    
+                </form> 
+    
+            </div>
+           
+          
+        </div>
+    </div>
+
+
+    <div class="modalNotificacion_container" id="modalNotificacion_container">
         <div class="modalNotificacion" id="modalNotificacion">
             <i class="fa-solid fa-circle-info fa-2xl"></i>
             <p id="modalNotificacion_text"></p>
-            <button id="cerrar_modalStandard">Cerrar</button>
+            <button id="cerrar_modalNotificacion">Cerrar</button>
         </div>
     </div>
+
+ 
 
     
 
@@ -209,9 +220,9 @@
         AOS.init();
     </script>
 
-    <script src="js/StyleScript.js"></script>
-    <script src="js/getUsuariosMedicos.js?696"></script>
-    <script src="js/agendarCita.js?324"></script>
+    <script src="js/StyleScript.js?77878"></script>
+    <script src="js/serverAPI.js?325"></script>
+    <script src="js/agendarCita.js?302"></script>
    
     <script>
         logout();

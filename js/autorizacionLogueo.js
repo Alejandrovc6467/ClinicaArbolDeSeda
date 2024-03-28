@@ -7,6 +7,11 @@ const verificarLogin = () => {
   var userSessionSessionStorage = []; 
   userSessionSessionStorage =  JSON.parse(sessionStorage.getItem("sesionUser"));
 
+  //hago esta verificaion por si intentan ingresar al agn=endarCita.html sin haber un usuario registrado por lo tanto no habria un usuario en userSessionLocalStorage
+  if(userSessionLocalStorage == null){
+      window.location.href = 'login.html';
+  }
+
   if( !( (userSessionSessionStorage != null) && (userSessionLocalStorage.cedula === userSessionSessionStorage.cedula ) )){
     window.location.href = 'login.html';
   }  

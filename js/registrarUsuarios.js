@@ -248,28 +248,28 @@ const limpiarCamposTexto = () => {
 //****************** Registro*******************
 
 
+// esta funcion deberia ir en el getUsuariosMedicosCitas *********
 const registrarUsuarioEnLocalStorage = (cedula, nombre, apellidos, telefono, correo, contrasenia) => {
 
     var usuarios = getLocalStorageUsuarios();
-    if(usuarios == null){
-        usuarios = [];
-    }
-
+    
     const nuevoUsuario = {
         cedula: cedula,
         nombre: nombre,
         apellidos: apellidos,
         telefono: telefono,
         correo: correo,
-        contrasenia: contrasenia
+        contrasenia: contrasenia,
+        rol: "usuario"
     };
    
     usuarios.push(nuevoUsuario);
   
     // puse esto en un if para ver si me mostrba un true o false, pero no retorna nada, entonces voy a retornar un trie siempre abajo para indicar que todo salio bien
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
   
-   return true;
+    return true;
    
 };
 
@@ -281,11 +281,6 @@ const verificarExistenciaUsuario = (cedula) => {
    
     var usuarios = getLocalStorageUsuarios();
 
-    // en caso de que no haya nadie resistrado, esto para no tener probemas con el length del index
-    if(usuarios == null){
-        usuarios = [];
-    }
-    
     for (let i = 0; i < usuarios.length; i++) {
        
         if (usuarios[i].cedula === cedula) {

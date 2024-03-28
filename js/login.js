@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         console.log(cedula, contrasenia);
 
-        console.log(getLocalStorageUsuarios(), "desde el login event solo para ver")
+        console.log(getUsuarios(), "desde el login event solo para ver los usuarios registrados")
 
         const esValido = verificarLogin(cedula, contrasenia);
 
@@ -62,12 +62,7 @@ const verificarLogin = (cedula, contrasenia)=>{
 
     //falta implementar la ecriptacion de la password, eso debria ir aqui
 
-    var usuarios = getLocalStorageUsuarios();
-
-    if(usuarios == null){
-        usuarios  = [];
-    }
-
+    var usuarios = getUsuarios();
 
     for (let i = 0; i < usuarios.length; i++) {
        

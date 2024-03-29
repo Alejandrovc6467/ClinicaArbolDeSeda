@@ -131,6 +131,19 @@ const getCitasUsuario = (cedula, fecha) => {
 };
 
 
+const getCitaById = (id) => {
+
+    var citas = getCitas();
+
+    for (let i = 0; i < citas.length; i++) {
+       
+        if (citas[i].id === id) {
+            return  citas[i];
+        }
+    }
+
+};
+
 
 const verificarExistenciaCitaEseDiaUsuario = (cedula, fecha) => {
 
@@ -146,7 +159,6 @@ const verificarExistenciaCitaEseDiaUsuario = (cedula, fecha) => {
     return false;
 
 };
-
 
 
 const getCitasMedico = (cedula, fecha) => {
@@ -190,8 +202,14 @@ const setCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
     var citas = getCitas();
     
     var medicoCita = getMedico(cedulaMedico);
+
+    var identificador = getIndentificadorCita();
+
+    incrementarIndentificadorCita();
+
         
     const nuevaCita = {
+        id: identificador,
         usuarioCedula: usuarioCedula,
         fecha: fecha,
         hora: hora,
@@ -208,6 +226,25 @@ const setCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
     return true;
        
 };
+
+
+
+// en proceso
+const updateCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
+   
+    //necesito hacer un identificador
+    
+    // si la cita su estado es "Aprobado" cambiar a Pendiente
+
+    // no tengo que eliminar ninguna cita
+   // eliminarCita (usuarioCedula,fecha, hora, especialidad, cedulaMedico);
+
+    setCita(usuarioCedula,fecha, hora, especialidad, cedulaMedico);
+
+    return true;
+};
+
+
 
 
 
@@ -230,15 +267,14 @@ const verifcarHorarioDeCita = (fecha, hora, medico ) => {
 };
 
 
-const actualizarEstadoCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
 
-    console.log(usuarioCedula,fecha, hora, especialidad, cedulaMedico, "desde sever");
+const actualizarEstadoCita = (id) => {
 
     var citas = getCitas();
 
     for (let i = 0; i < citas.length; i++) {
        
-        if (citas[i].usuarioCedula === usuarioCedula && citas[i].fecha === fecha && citas[i].hora === hora &&  citas[i].especialidad === especialidad &&  citas[i].cedulaMedico === cedulaMedico ) {
+        if (citas[i].id === id) {
 
             if(citas[i].estado === "Pendiente"){
                 citas[i].estado = "Aprobado";
@@ -258,8 +294,26 @@ const actualizarEstadoCita = (usuarioCedula,fecha, hora, especialidad, cedulaMed
 
 
 
+const eliminarCita = (id) => {
+
+    var citas = getCitas();
+
+    for (let i = 0; i < citas.length; i++) {
+       
+        if (citas[i].id === id) {
+
+            citas.splice(i,1);
+
+            break;
+        }
+    }
 
 
+    localStorage.setItem("citas", JSON.stringify(citas));
+
+    return true;
+    
+};
 
 
 
@@ -284,3 +338,27 @@ const getLocalStorageUser = () => {
     return userLocalSessionStorage.cedula;
 
 };
+
+
+
+// generador de primary key para las citas
+const getIndentificadorCita = () => {
+
+    var identificadorCita = JSON.parse(localStorage.getItem("identificadorCita"));
+
+    if(identificadorCita != null){
+        return identificadorCita.id;
+    }else{
+        localStorage.setItem("identificadorCita", JSON.stringify({id:1}));
+        identificadorCita = JSON.parse(localStorage.getItem("identificadorCita"));
+        return identificadorCita.id;
+    }
+};
+
+const incrementarIndentificadorCita = () => {
+    var identificadorCita = JSON.parse(localStorage.getItem("identificadorCita"));
+    var nuevoIdentificador = identificadorCita.id +1;
+    localStorage.setItem("identificadorCita", JSON.stringify({id:nuevoIdentificador}));
+};
+
+

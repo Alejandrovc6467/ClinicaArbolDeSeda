@@ -71,6 +71,12 @@ const StandardModal = () => {
 
 };
 
+const cerrarModalStandard = () => {
+
+  const modalStandard = document.querySelector("#modalStandard_container");
+  modalStandard.classList.remove("active");
+};
+
 StandardModal();
 
 const mostrarModalStandard = () => {
@@ -78,3 +84,5 @@ const mostrarModalStandard = () => {
   document.querySelector("#modalStandard_container").classList.add("active");
 
 };
+
+

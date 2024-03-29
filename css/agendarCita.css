@@ -160,29 +160,12 @@
 }
 #prev:hover::before,
 #next:hover::before {
-  border-color: #000;
+  border-color: var(--colorBaseVeterinaria);
 }
 .days {
   font-weight: 600;
 }
 
-/*
-.dates li.today {
-  color: #fff;
-}
-.dates li.today::before {
-  content: "";
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #000;
-  border-radius: 50%;
-  z-index: -1;
-}
-*/
 .dates li.inactive {
   color: #ccc;
 }
@@ -213,33 +196,22 @@
   display: none; /* Oculta el scrollbar en navegadores webkit */
 }
 
-@keyframes cambioDegradado {
-  0% {
-    background-position: 0% 0%; /* Desde la parte superior */
-  }
-  100% {
-    background-position: 0% 100%; /* Hasta la parte inferior */
-  }
-}
+
 
 .cita{
   width: 100%;
   padding: 20px;
   margin-bottom: 25px;
   border-radius: 15px;
-  background-image: linear-gradient(to bottom, var(--colorBaseVeterinaria), var(--colorSecundarioVeterinaria));
+  background-image: linear-gradient(to top, var(--colorBaseVeterinaria), var(--colorSecundarioVeterinaria));
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   
-  animation: cambioDegradado 1s ease infinite alternate;
 }
 
 
 
 .cita p{
   color: rgb(223, 223, 223);
-  
-  /* color: var(--colorTextoP); */
-  
   font-family: sans-serif;
   margin-bottom: 5px;
 }
@@ -255,6 +227,53 @@
   margin-right: 7px;
 }
 
+.botones_cita {
+  text-align: center;
+}
+
+.botones_cita button {
+  width: 40%;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-family: var(--Alegreya-Sans);
+  font-weight: 500;
+  font-size: 15px;
+  font-style: bold;
+  transition: 1s ease;
+  text-align: center;
+  padding: 7px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.borrarCita {
+  background-color: var(--colorAdvertencia);
+}
+
+.actualizarCita {
+  background-color: var(--colorBaseVeterinaria);
+}
+
+
+.botones_cita label {
+  background-color: var(--colorBaseVeterinaria);
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: white;
+  font-family: sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ 
+}
+
+.aprobarCita{
+  margin-left: 20px;
+}
+
+.botones_cita input[type="checkbox"] {
+  transform: scale(1.5); /* Ajusta el tamaño del checkbox según tu preferencia */
+  margin-right: 5px; /* Ajusta el margen a tu gusto */
+}
 
 .container_boton_agregarCita{
   height: 10%;

@@ -199,6 +199,25 @@
 
 
 
+#actualizarCita {
+
+    background-color: var(--colorBaseVeterinaria);
+    width: 200px;
+    margin-top: 10px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-family: var(--Alegreya-Sans);
+    font-weight: 500;
+    font-size: 15px;
+    font-style: bold;
+    transition: 1s ease;
+    text-align: center;
+    padding: 7px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
 
 
 

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/home.css?5454">
     <link rel="stylesheet" href="css/login.css?5454">
     <link rel="stylesheet" href="css/registroUsuarios.css">
-    <link rel="stylesheet" href="css/agendarCita.css?12147">
+    <link rel="stylesheet" href="css/agendarCita.css?32518">
     <link rel="stylesheet" href="css/modal.css?721">
     <link rel="stylesheet" href="css/carruselServiciosMedicos.css?81">
     <link rel="stylesheet" href="css/footer.css?2">    
@@ -159,24 +159,31 @@
                         </div>
     
                         <div class="containerInput_agendarCita">
-                            <label for="hora">Hora:</label>
-                            <select id="hora" name="hora">
+                            <label for="horaInput">Hora:</label>
+                            <select id="horaInput" name="horaInput">
+                                <option value="08:00">08:00</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
                                 <option value="13:00">13:00</option>
                                 <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
                             </select>
                         </div>
 
                         <div class="containerInput_agendarCita">
-                            <label for="especialidad">Especialidad:</label>
-                            <select id="especialidad" name="especialidad">
+                            <label for="especialidadInput">Especialidad:</label>
+                            <select id="especialidadInput" name="especialidadInput">
                                 <option value="Cardiólogo">Cardiólogo</option>
                                 <option value="Neurólogo">Neurólogo</option>
                             </select>
                         </div>
 
                         <div class="containerInput_agendarCita">
-                            <label for="cedulaMedico">CédulaMédico:</label>
-                            <select id="cedulaMedico" name="medico">
+                            <label for="cedulaMedicoInput">CédulaMédico:</label>
+                            <select id="cedulaMedicoInput" name="cedulaMedicoInput">
                                 <option value="3-0504-0220">3-0504-0220</option>
                                 <option value="3-0504-0265">3-0504-0265</option>
                             </select>
@@ -187,12 +194,13 @@
     
                     </div>
     
-                    
-                    
-                    <input type="submit" value="Agendar Cita">
+                    <input type="submit" id="botonSubmitFormAgendarCita" value="Agendar Cita">
     
                 </form> 
-    
+
+              
+
+
             </div>
            
           
@@ -218,9 +226,9 @@
         AOS.init();
     </script>
 
-    <script src="js/StyleScript.js?77878"></script>
-    <script src="js/serverAPI.js?411"></script>
-    <script src="js/agendarCita.js?31115"></script>
+    <script src="js/StyleScript.js?1034"></script>
+    <script src="js/serverAPI.js?10247"></script>
+    <script src="js/agendarCita.js?1478"></script>
    
     <script>
         logout();

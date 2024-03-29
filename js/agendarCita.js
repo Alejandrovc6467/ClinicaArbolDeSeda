@@ -2,22 +2,29 @@
 //obtener variables de session para colocarlas en la bienvenida
 const getNombreApellidosVariablesDeSesion = () => {
 
-    var datosUser = getUsuario(getSessionStorageUser());
+  var bienvenida_nameUser = document.getElementById("bienvenida_nameUser");
 
-    var bienvenida_nameUser = document.getElementById("bienvenida_nameUser");
+  if( getUsuario(getSessionStorageUser()) != null ){
+
+    var datosUser = getUsuario(getSessionStorageUser());
 
     var nombreApellidos = datosUser.nombre + " " +datosUser.apellidos;
 
     bienvenida_nameUser.textContent = nombreApellidos;
+
+  }else{
+
+    var datosMedico = getMedico(getSessionStorageUser());
+
+    var nombreApellidos = datosMedico.nombre + " " +datosMedico.apellidos;
+
+    bienvenida_nameUser.textContent = nombreApellidos;
+
+  }
+  
 };
 
 getNombreApellidosVariablesDeSesion();
-
-
-
-
-
-
 
 
 
@@ -63,33 +70,25 @@ const renderCalendar = () => {
 
 
   for (let i = 1; i <= endDate; i++) {
-
-
-    /* aqui tengo que preguntar si es un "usuaro" o "medico"
-
-    si es usuario pinto de color (color secundario) los dias en que el usuario tenga citas, pero si preciono alguno de esos dias pintar de azul como ya lo hago, pero si presiono otro tiene que volver al color secundario que ya estaba
-
-    lo mismo para los "medico" solo que a el le cargo las citas en las cuales esta su cedula y tambien cargar las citas a la derecha como ya lo hago con citas de usuarios
-
-    */
-
-
-
-
-
-
     
-    //let className = i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear()  ? ' class="today"' : "";
-    let className = ' class=""';
-    //datesHtml += `<li${className}>${i}</li>`;
-    //datesHtml += `<li id="date-${i}"${className} onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
-    //datesHtml += `<li id="date-${i}"${className} class="calendar-date" onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
+    if( getUsuario(getSessionStorageUser()) != null ){
 
-    datesHtml += `<li id="date-${i}" class="calendar-date" onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
+      if(verificarExistenciaCitaEseDiaUsuario(getSessionStorageUser(), `${i}/${month+1}/${year}`)){
+        datesHtml += `<li id="date-${i}" class="calendar-date existeCita" onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
+      }else{
+        datesHtml += `<li id="date-${i}" class="calendar-date" onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
+      }
 
+    }else{
 
+      if(verificarExistenciaCitaEseDiaMedico(getSessionStorageUser(), `${i}/${month+1}/${year}`)){
+        datesHtml += `<li id="date-${i}" class="calendar-date existeCita" onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
+      }else{
+        datesHtml += `<li id="date-${i}" class="calendar-date" onclick="abrirFecha(${year}, ${month}, ${i})">${i}</li>`;
+      }
 
-
+    }
+  
   }
 
 
@@ -104,7 +103,7 @@ const renderCalendar = () => {
 };
 
 
-// botones anterio y siguiente del calendario
+// botones anterior y siguiente del calendario
 navs.forEach((nav) => {
    nav.addEventListener("click", (e) => {
         const btnId = e.target.id;
@@ -139,6 +138,8 @@ renderCalendar();
 
 
 
+
+
 // Método para desabilitar el botón de agendar cita
 const desabilitarBoton = () => {
   document.getElementById('boton_agregarCita').disabled = true;
@@ -147,8 +148,13 @@ const desabilitarBoton = () => {
 
 // Método para habilitar el botón de agendar cita
 const habilitarBoton = () => {
-  document.getElementById('boton_agregarCita').disabled = false;
-  document.getElementById('boton_agregarCita').classList.remove('desabilitado');
+
+  //si es un usuario habilito el boton agendarCita, si es medico pues el no puede hagendar citas con una cuenta de medico
+  if(getUsuario(getSessionStorageUser()) != null ){
+    document.getElementById('boton_agregarCita').disabled = false;
+    document.getElementById('boton_agregarCita').classList.remove('desabilitado');
+  }
+  
 };
 
 desabilitarBoton();
@@ -183,108 +189,140 @@ const setFechaEnInputModalStandar = (year, month, day) => {
 };
 
 
-const abrirFecha = (year, month, day) => {
+const getCitasDelDia = (day, month, year) => {
 
-  habilitarBoton();
-
-  removerSeleccionEnLosDemasElmentos(day);
-  
-  setFechaEnInputModalStandar(year, month, day);
-  
-
+  console.log(day, month, year, "desde getCitas");
 
   
-    // aqui tiene que estar los metodo para cargas las citas, primero preguntar por el rol
-      /*
-    if(rol === usuario){
-      getCitasUsuario(cedulaUser);
-    }else{
-      getCitasUsarios();
-    }*/
+  const citasPadre = document.getElementById('citas'); // Obtener el div padre
 
-   
+  citasPadre.innerHTML = '';  // Limpiar todas las citas existentes
 
-  var sesion =   getUsuario(getSessionStorageUser());
+  var fecha = `${day}/${month+1}/${year}`; 
 
-  if(sesion.rol === "usuario"){
-
-    var fecha = `${day}/${month+1}/${year}`; 
+  if(getUsuario(getSessionStorageUser()) != null ){
 
     var citasDeUsuario = getCitasUsuario(getSessionStorageUser(), fecha);// obtener todas las citas de ese usuario en el dia solicitado
-
-
-
-    const citasPadre = document.getElementById('citas'); // Obtener el div padre
-
-    citasPadre.innerHTML = '';  // Limpiar todas las citas existentes
 
     for (let i = 0; i < citasDeUsuario.length; i++) {
       
       const cita = citasDeUsuario[i]; // Obtener la cita actual
     
-      // Crear un nuevo div "cita"
-      const nuevaCita = document.createElement('div');
+      const nuevaCita = document.createElement('div');// Crear un nuevo div "cita"
       nuevaCita.classList.add('cita');
   
       // Agregar los elementos HTML con los datos de la cita
       nuevaCita.innerHTML = `
-          <label for="usuarioCedula">Cédula Usuario:</label>
-          <p id="usuarioCedula">${cita.usuarioCedula}</p>
-  
-          <label for="fecha">Fecha:</label>
-          <p id="fecha">${cita.fecha}</p>
-  
-          <label for="hora">Hora:</label>
-          <p id="hora">${cita.hora}</p>
-  
-          <label for="especialidad">Especialidad:</label>
-          <p id="especialidad">${cita.especialidad}</p>
-  
-          <label for="medico">Médico:</label>
-          <p id="medico">${cita.medico}</p>
-  
-          <label for="estado">Estado:</label>
-          <p id="estado">${cita.estado}</p>
-  
-          <div class="botones_cita">
-              <button>Actualizar</button>
-              <button>Borrar</button>
-          </div>
+        <span>Cédula Usuario:</span> 
+        <p id="usuarioCedula_${i}">${cita.usuarioCedula}</p>
+
+        <span>Fecha:</span> 
+        <p id="fecha_${i}">${cita.fecha}</p>
+
+        <span>Hora:</span> 
+        <p id="hora_${i}">${cita.hora}</p>
+
+        <span>Especialidad:</span> 
+        <p id="especialidad_${i}">${cita.especialidad}</p>
+
+        <span>Cédula Médico:</span> 
+        <p id="cedulaMedico_${i}">${cita.cedulaMedico}</p>
+
+        <span>Nombre Médico:</span> 
+        <p id="nombreMedico_${i}">${cita.nombreMedico}</p>
+
+        <span>Estado:</span> 
+        <p id="estado_${i}">${cita.estado}</p>
+
+        <div class="botones_cita">
+          <button onclick="borrarCita(${i})">Borrar</button>
+          <button onclick="actualizarCita(${i})">Actualizar</button>  
+        </div>
       `;
   
       // Agregar la nueva cita al div padre
       citasPadre.appendChild(nuevaCita);
 
 
-
-
-
     };
 
-
-
-
-    console.log("es usuario");
-
+    console.log("Es usuario");
 
   }else{
 
+    var citasDeMedicos = getCitasMedico(getSessionStorageUser(), fecha);// obtener todas las citas de ese medico en el dia solicitado
+
+    for (let i = 0; i < citasDeMedicos.length; i++) {
+
+      const cita = citasDeMedicos[i]; // Obtener la cita actual
+  
+      const nuevaCita = document.createElement('div'); // Crear un nuevo div "cita"
+      nuevaCita.classList.add('cita');
+
+
+      // Definir si el checkbox debe estar marcado o no basado en el estado de la cita
+      let checkboxMarcado = '';
+      if (cita.estado === 'Aprobado') {
+          checkboxMarcado = 'checked';
+      }
     
-    console.log("es medico");
+      // Agregar los elementos HTML con los datos de la cita
+      nuevaCita.innerHTML = `
+
+        <span>Cédula Usuario:</span> 
+        <p id="usuarioCedula_${i}">${cita.usuarioCedula}</p>
+
+        <span>Fecha:</span> 
+        <p id="fecha_${i}">${cita.fecha}</p>
+
+        <span>Hora:</span> 
+        <p id="hora_${i}">${cita.hora}</p>
+
+        <span>Especialidad:</span> 
+        <p id="especialidad_${i}">${cita.especialidad}</p>
+
+        <span>Cédula Médico:</span> 
+        <p id="cedulaMedico_${i}">${cita.cedulaMedico}</p>
+
+        <span>Nombre Médico:</span> 
+        <p id="nombreMedico_${i}">${cita.nombreMedico}</p>
+
+        <span>Estado:</span> 
+        <p id="estado_${i}">${cita.estado}</p>
+
+        <div class="botones_cita">
+          <label for="aprobarCheckbox_${i}">Aprobar <input type="checkbox" id="aprobarCheckbox_${i}" onchange="cambiarEstadoCita(${i}, this)" ${checkboxMarcado}></label>
+        </div>
+      `;
+  
+      // Agregar la nueva cita al div padre
+      citasPadre.appendChild(nuevaCita);
+    };
+
+    console.log("Es medico");
+
   }
-    
 
-    
-
- 
-
-
-
-
-
-  console.log("Clicked on date:", year, month+1, day);
 
 };
+
+
+
+const abrirFecha = (year, month, day) => {
+
+  // validar si la sesion es de medico nunca llamar es metodo
+  habilitarBoton();
+
+  removerSeleccionEnLosDemasElmentos(day);
+  
+  setFechaEnInputModalStandar(year, month, day);
+  
+  getCitasDelDia(day, month, year); 
+
+  console.log("Clicked on date:", day , month+1, year );
+
+};
+
 
 
 // Event listener para el evento de click del boton "agregar nueva cita" y mostar el modal standard
@@ -305,24 +343,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
   formularioRegistro.addEventListener("submit", (event)=>{
     event.preventDefault()
       
-      const {fecha, hora, especialidad, medico} = getDatosFormularioAgendarCita();
+      const {fecha, hora, especialidad, cedulaMedico} = getDatosFormularioAgendarCita();
 
       
       const userCedula = getSessionStorageUser();
 
-      //validar datos mas tarde, como solo son select pues ya bien bien, aun asi hay que validarlos, pero mas tarde
+      //validar datos mas tarde, como solo son select pues ya bienen bien, aun asi hay que validarlos, pero mas tarde
       //const datosValidos = validarCedula(cedula) && validarNombre(nombre) && validarApellidos(apellidos) && validarTelefono(telefono)  && validarEmail(correo) && validarPassword(contrasenia);
 
     
-      if(verifcarHorarioDeCita(fecha, hora, medico)){
+      if(verifcarHorarioDeCita(fecha, hora, cedulaMedico)){
 
-        if( setCita(userCedula, fecha, hora, especialidad, medico)){
+        if( setCita(userCedula, fecha, hora, especialidad, cedulaMedico)){
           mostrarModalNotificacion("Cita agendada correctamente");
+          renderCalendar();
         }else{
           mostrarModalNotificacion("Hubo un error al agendar la cita, intenta nuevamente");
+          renderCalendar();
         }
        
-
       }else{
         mostrarModalNotificacion("Ya existe una cita agendada para esa fecha y hora con el medico seleccionado");
       }
@@ -339,8 +378,117 @@ const getDatosFormularioAgendarCita = () => {
   const fecha = document.getElementById("fechaCitaInput").value.trim();
   const hora = document.getElementById("hora").value.trim();
   const especialidad = document.getElementById("especialidad").value.trim();
-  const medico = document.getElementById("medico").value.trim();
+  const cedulaMedico = document.getElementById("cedulaMedico").value.trim();
 
-  return {fecha, hora, especialidad, medico};
+  return {fecha, hora, especialidad, cedulaMedico};
+
+};
+
+
+const limpiarCamposTextoAgendarCita = () => {
+
+  const camposTexto = document.querySelectorAll('#agendarCita input[type="text"], #agendarCita input[type="email"], #agendarCita input[type="password"]');
+  
+  camposTexto.forEach(campo => {
+      campo.value = '';
+  });
+
+};
+
+
+const  borrarCita = (index) => {
+
+
+  // primero preguntar con un modal noti si lo quiero borrar
+  const citaElement = document.querySelector(`.cita:nth-child(${index + 1})`);
+  const datosP = citaElement.querySelectorAll('p');
+  const datos = {};
+
+  datosP.forEach(function(p) {
+      const id = p.getAttribute('id');
+      // Eliminamos el índice y el guion bajo del identificador
+      const idSinIndex = id.replace(`_${index}`, '');
+      const valor = p.textContent.trim().replace(/\s{2,}/g, ' ');
+      // Usamos el identificador sin el índice para guardar los datos
+      datos[idSinIndex] = valor;
+  });
+
+  // Hacer lo que necesites con los datos de la cita antes de eliminarla
+  console.log('Datos de la cita a borrar:', datos);
+
+  // Eliminar la cita del DOM
+  // citaElement.remove();
+  // renderCalendar();
+
+};
+
+
+const actualizarCita = (index) => {
+
+  // primero preguntar con un modal noti si lo quiero borrar
+  const citaElement = document.querySelector(`.cita:nth-child(${index + 1})`);
+  const datosP = citaElement.querySelectorAll('p');
+  const datos = {};
+
+  datosP.forEach(function(p) {
+      const id = p.getAttribute('id');
+      // Eliminamos el índice y el guion bajo del identificador
+      const idSinIndex = id.replace(`_${index}`, '');
+      const valor = p.textContent.trim().replace(/\s{2,}/g, ' ');
+      // Usamos el identificador sin el índice para guardar los datos
+      datos[idSinIndex] = valor;
+  });
+
+  // Hacer lo que necesites con los datos de la cita antes de eliminarla
+  console.log('Datos de la cita a borrar:', datos);
+
+  // Eliminar la cita del DOM
+  // citaElement.remove();
+  // renderCalendar();
+
+};
+
+
+const  cambiarEstadoCita = (index, checkbox) => {
+  
+  const citaElement = document.querySelector(`.cita:nth-child(${index + 1})`);
+  const datosP = citaElement.querySelectorAll('p');
+  const datos = {};
+
+  datosP.forEach(function(p) {
+
+      const id = p.getAttribute('id');
+   
+      const idSinIndex = id.replace(`_${index}`, '');
+      const valor = p.textContent.trim().replace(/\s{2,}/g, ' ');
+    
+      datos[idSinIndex] = valor;
+  });
+
+  const isChecked = checkbox.checked;
+
+  console.log(datos, "desde agendar");
+
+
+  actualizarEstadoCita(datos.usuarioCedula, datos.fecha, datos.hora, datos.especialidad, datos.cedulaMedico);
+
+
+  
+  const fecha = datos.fecha;
+
+  // Dividir la cadena de fecha en partes utilizando el separador "/"
+  const partesFecha = datos.fecha.split("/");
+  // Dividir la cadena de fecha en partes utilizando el separador "/"
+ 
+
+  // Obtener el día, el mes y el año de las partes obtenidas
+  const dia = partesFecha[0];
+  const mes = partesFecha[1];
+  const anio = partesFecha[2];
+
+  
+
+  //actualizar las citas
+  getCitasDelDia(dia, parseInt(mes, 10) - 1, anio);
 
 };

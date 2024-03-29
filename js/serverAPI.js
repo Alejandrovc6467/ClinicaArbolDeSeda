@@ -112,6 +112,7 @@ const getCitas = () => {
 };
 
 
+
 const getCitasUsuario = (cedula, fecha) => {
 
     var citas = getCitas();
@@ -130,47 +131,129 @@ const getCitasUsuario = (cedula, fecha) => {
 };
 
 
-const setCita = (usuarioCedula,fecha, hora, especialidad, medico) => {
 
-    if(verifcarHorarioDeCita(fecha, hora)){
-
-        var citas = getCitas();
-        
-        const nuevaCita = {
-            usuarioCedula: usuarioCedula,
-            fecha: fecha,
-            hora: hora,
-            especialidad: especialidad,
-            medico: medico,
-            estado: "pendiente"
-        };
-    
-        citas.push(nuevaCita);
-    
-        localStorage.setItem("citas", JSON.stringify(citas));
-
-        return true;
-       
-    }else{
-        return false;
-    }
- 
-};
-
-
-const verifcarHorarioDeCita = (fecha, hora, medico ) => {
+const verificarExistenciaCitaEseDiaUsuario = (cedula, fecha) => {
 
     var citas = getCitas();
 
     for (let i = 0; i < citas.length; i++) {
        
-        if (citas[i].fecha === fecha && citas[i].hora === hora && citas[i].medico === medico) {
+        if (citas[i].usuarioCedula === cedula && citas[i].fecha === fecha) {
+            return true;
+        }
+    }
+   
+    return false;
+
+};
+
+
+
+const getCitasMedico = (cedula, fecha) => {
+
+    var citas = getCitas();
+
+    var citasRetornar = [];
+
+    for (let i = 0; i < citas.length; i++) {
+       
+        if (citas[i].cedulaMedico === cedula && citas[i].fecha === fecha) {
+            citasRetornar.push(citas[i]);
+        }
+    }
+   
+    return citasRetornar;
+
+};
+
+
+
+const verificarExistenciaCitaEseDiaMedico = (cedula, fecha) => {
+
+    var citas = getCitas();
+
+    for (let i = 0; i < citas.length; i++) {
+       
+        if (citas[i].cedulaMedico === cedula && citas[i].fecha === fecha) {
+            return true;
+        }
+    }
+   
+    return false;
+
+
+};
+
+
+const setCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
+
+    var citas = getCitas();
+    
+    var medicoCita = getMedico(cedulaMedico);
+        
+    const nuevaCita = {
+        usuarioCedula: usuarioCedula,
+        fecha: fecha,
+        hora: hora,
+        especialidad: especialidad,
+        cedulaMedico: cedulaMedico,
+        nombreMedico: medicoCita.nombre,
+        estado: "Pendiente"
+    };
+    
+    citas.push(nuevaCita);
+    
+    localStorage.setItem("citas", JSON.stringify(citas));
+
+    return true;
+       
+};
+
+
+
+const verifcarHorarioDeCita = (fecha, hora, medico ) => {
+
+    //validar que no agende citas a la misma hora del mismo dia, asi sea con otro medico
+
+    var citas = getCitas();
+    console.log(citas);
+
+    for (let i = 0; i < citas.length; i++) {
+       
+        if (citas[i].fecha === fecha && citas[i].hora === hora && citas[i].cedulaMedico === medico) {
             return false;
         }
     }
    
     return true;
 
+};
+
+
+const actualizarEstadoCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
+
+    console.log(usuarioCedula,fecha, hora, especialidad, cedulaMedico, "desde sever");
+
+    var citas = getCitas();
+
+    for (let i = 0; i < citas.length; i++) {
+       
+        if (citas[i].usuarioCedula === usuarioCedula && citas[i].fecha === fecha && citas[i].hora === hora &&  citas[i].especialidad === especialidad &&  citas[i].cedulaMedico === cedulaMedico ) {
+
+            if(citas[i].estado === "Pendiente"){
+                citas[i].estado = "Aprobado";
+            }else{
+                citas[i].estado = "Pendiente";
+            }
+           
+        }
+    }
+
+
+    localStorage.setItem("citas", JSON.stringify(citas));
+
+    return true;
+    
 };
 
 

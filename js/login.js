@@ -70,7 +70,17 @@ const verificarLogin = (cedula, contrasenia)=>{
             return true
         }
     }
+
+    var medicos = getMedicos();
+
+    for (let i = 0; i < medicos.length; i++) {
+       
+        if (medicos[i].cedula === cedula && medicos[i].contrasenia === contrasenia ) {
+            return true
+        }
+    }
    
+
     return false;
 
 };

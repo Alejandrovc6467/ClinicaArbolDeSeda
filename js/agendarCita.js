@@ -144,9 +144,8 @@ const  mostrarBotonFormAgendarCita = () => {
 };
 
 
-const agregarBotonActualizar = (id) => {
+const agregarBotonActualizar = () => {
 
-  console.log(id, "desde agregar boton");
   // Verificar si ya existe un botón con el ID "actualizarCita"
   if (!document.getElementById("actualizarCita")) {
     // Crear el botón solo si no existe
@@ -166,38 +165,6 @@ const agregarBotonActualizar = (id) => {
 };
 
 
-const actualizarCita = () => {
-
-  const {fecha, hora, especialidad, cedulaMedico} = getDatosFormularioAgendarCita();
-  const usuarioCedula = getSessionStorageUser();
-
-
-
-  /*
-  const {fecha, hora, especialidad, cedulaMedico} = getDatosFormularioAgendarCita();
-  const usuarioCedula = getSessionStorageUser();
-
-
-  if(verifcarHorarioDeCita(fecha, hora, cedulaMedico)){
-
-    
-   if(updateCita(usuarioCedula,fecha, hora, especialidad, cedulaMedico)){
-
-    mostrarModalNotificacion("Cita actualizada correctamente");
-
-   }else{
-    mostrarModalNotificacion("Ocurrio un error al actualizar la cita, intenta nuevamente");
-   }
-   
-   
-  }else{
-    mostrarModalNotificacion("Ya existe una cita agendada para esa fecha y hora con el medico seleccionado");
-  }
-
-  */
-};
-
-
 const  quitarBotonActualizar = () => {
   // Obtener el botón de actualizar
   var botonActualizar = document.getElementById("actualizarCita");
@@ -207,6 +174,54 @@ const  quitarBotonActualizar = () => {
     // Eliminar el botón
     botonActualizar.parentNode.removeChild(botonActualizar);
   }
+};
+
+
+const  setIdCitaInputOculto = (valor) => {
+  document.getElementById("idCitaInput").value = valor;
+};
+
+
+const  getIdCitaInputOculto = (valor) => {
+  return document.getElementById("idCitaInput").value;
+};
+
+
+
+const actualizarCita = () => {
+
+  const {id, fecha, hora, especialidad, cedulaMedico} = getDatosFormularioAgendarCitaUpdate();
+  
+  if(verifcarHorarioDeCita(fecha, hora, cedulaMedico)){
+
+    if( !(getCitaById(id)) ){
+     
+      if(updateCita (id, hora, especialidad, cedulaMedico)){
+
+        mostrarModalNotificacion("Cita actualizada correctamente");
+
+        const partesFecha = fecha.split("/");
+        const dia = partesFecha[0];
+        const mes = partesFecha[1];
+        const anio = partesFecha[2];
+      
+        //actualizar las citas
+        getCitasDelDia(dia, parseInt(mes, 10) - 1, anio);
+
+      }else{
+        mostrarModalNotificacion("Cita no actualizada, Intente nuevamente");
+      }
+      
+    }else{
+      mostrarModalNotificacion("El id de la cita a actualizar no está registrada");
+    }
+   
+   
+  }else{
+    mostrarModalNotificacion("Ya existe una cita agendada para esa fecha y hora con el medico seleccionado");
+  }
+
+
 };
 
 
@@ -477,6 +492,19 @@ const getDatosFormularioAgendarCita = () => {
 };
 
 
+const getDatosFormularioAgendarCitaUpdate = () => {
+
+  const id = document.getElementById("idCitaInput").value.trim();
+  const fecha = document.getElementById("fechaCitaInput").value.trim();
+  const hora = document.getElementById("horaInput").value.trim();
+  const especialidad = document.getElementById("especialidadInput").value.trim();
+  const cedulaMedico = document.getElementById("cedulaMedicoInput").value.trim();
+
+  return {id, fecha, hora, especialidad, cedulaMedico};
+
+};
+
+
 const limpiarCampos = () => {
 
   document.getElementById("horaInput").value = "";
@@ -521,14 +549,13 @@ const abrirModalActualizarCita = (id) => {
 
   var cita =  getCitaById(id);
 
-  console.log(cita, "desde abrir modal");
-
   document.getElementById("horaInput").value = cita.hora;
   document.getElementById("especialidadInput").value = cita.especialidad;
   document.getElementById("cedulaMedicoInput").value = cita.cedulaMedico;
 
+  setIdCitaInputOculto(id);
   ocultarBotonFormAgendarCita();
-  agregarBotonActualizar(id);
+  agregarBotonActualizar();
   mostrarModalStandard();
 
 };

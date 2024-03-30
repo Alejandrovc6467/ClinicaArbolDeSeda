@@ -140,7 +140,9 @@ const getCitaById = (id) => {
         if (citas[i].id === id) {
             return  citas[i];
         }
-    }
+    };
+
+    return false;
 
 };
 
@@ -230,17 +232,28 @@ const setCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
 
 
 // en proceso
-const updateCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
+const updateCita = (idCita,  hora, especialidad, cedulaMedico) => {
+
+    console.log(idCita, "id que me llega");
+
+    var medico = getMedico(cedulaMedico);
+  
+    var citas = getCitas();
+
+    for (let i = 0; i < citas.length; i++) {
+
+        if (citas[i].id === parseInt(idCita) ) {
+           citas[i].hora = hora;
+           citas[i].especialidad = especialidad;
+           citas[i].cedulaMedico = cedulaMedico;
+           citas[i].nombreMedico = medico.nombre;
+           citas[i].estado = "Pendiente";
+           break;
+        }
+    };
+
+    localStorage.setItem("citas", JSON.stringify(citas));
    
-    //necesito hacer un identificador
-    
-    // si la cita su estado es "Aprobado" cambiar a Pendiente
-
-    // no tengo que eliminar ninguna cita
-   // eliminarCita (usuarioCedula,fecha, hora, especialidad, cedulaMedico);
-
-    setCita(usuarioCedula,fecha, hora, especialidad, cedulaMedico);
-
     return true;
 };
 
@@ -253,7 +266,6 @@ const verifcarHorarioDeCita = (fecha, hora, medico ) => {
     //validar que no agende citas a la misma hora del mismo dia, asi sea con otro medico
 
     var citas = getCitas();
-    console.log(citas);
 
     for (let i = 0; i < citas.length; i++) {
        

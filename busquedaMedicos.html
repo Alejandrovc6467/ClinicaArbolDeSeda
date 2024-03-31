@@ -19,13 +19,12 @@
 	<script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 
     <!-- My css -->
-    <link rel="stylesheet" href="css/base.css?44">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/navbar.css?2323">
     <link rel="stylesheet" href="css/home.css?5454">
     <link rel="stylesheet" href="css/login.css?5454">
-    <link rel="stylesheet" href="css/modal.css?78">
-    <link rel="stylesheet" href="css/registroUsuarios.css?656">
-    <link rel="stylesheet" href="css/carruselServiciosMedicos.css?21">
+    <link rel="stylesheet" href="css/registroUsuarios.css">
+    <link rel="stylesheet" href="css/carruselServiciosMedicos.css?81">
     <link rel="stylesheet" href="css/footer.css?2">
 
 </head>
@@ -54,31 +53,8 @@
 
     <main data-aos="fade-right" data-aos-duration="1500">
 
-        <div class="login">
-
-            <form  id="login">
-
-                <label for="cedula">Cédula de Identidad:</label><br>
-                <input type="text" id="cedula" name="cedula" required placeholder="#-####-####"><br>
-                
-                <label for="contrasenia">Contraseña:</label><br>
-                <input type="password" id="contrasenia" name="contrasenia" required placeholder="@$!%*?&"><br><br>
-                
-                <div class="container_recuperarContrasenia">
-                    <a href="recuperarContrasenia.html">¿Olvidaste la Contraseña?</a>
-                </div>
-
-                <input type="submit" value="Ingresar">
-
-                <div class="container_crearCuenta">
-                    <p>¿No tienes cuenta? <a href="registroUsuarios.html">Registrate</a></p>
-                </div>
-            
-                
-            </form> 
-            
-
-        </div>
+        
+        <p>busqueda</p>
 
     </main>
 
@@ -100,23 +76,33 @@
 
     </footer>
 
-    <div class="modalNotificacion_container" id="modalNotificacion_container">
-        <div class="modalNotificacion" id="modalNotificacion">
-            <i class="fa-solid fa-circle-info fa-2xl"></i>
-            <p id="modalNotificacion_text"></p>
-            <button id="cerrar_modalNotificacion">Cerrar</button>
-        </div>
-    </div>
-
     <!-- Js animation -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
 
-    <script src="js/StyleScript.js?13697"></script>
-    <script src="js/serverAPI.js?275"></script>
-    <script src="js/login.js?367"></script>
+    <script src="js/StyleScript.js"></script>
+
+    <!--quitar es solo para estar revisando el localStorege desde aqui -->
+        <script src="js/serverAPI.js?3217"></script>
+
+        <script>
+
+            //localStorage.removeItem("identificadorCita");
+            //console.log(getIndentificadorCita());
+            //incrementarIndentificadorCita();
+           // console.log(getIndentificadorCita());
+
+            //localStorage.clear();
+            //localStorage.removeItem("citas");
+            console.log(getUsuarios());
+            console.log(getMedicos());
+            console.log(getCitas());
+
+            
+        </script>
+    
     
 </body>
 

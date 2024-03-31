@@ -1,0 +1,38 @@
+
+.infoSession {
+    /* background-color: red; */
+}
+
+.infoSession h2{
+    margin-top: 25px;
+    text-align: center;
+    margin-bottom: 60px;
+
+    color: var(--colorBaseVeterinaria);
+    font-family: var( --Permanent-Marker);
+    font-weight: 900;
+    font-style: normal;
+    font-size: 40px;
+}
+
+.infoSession p{
+    margin: 0 5%;
+}
+
+.infoSession span{
+    font-weight: 700;
+}
+
+
+
+.politicaPrivacidad_container_descargar {
+    margin-top: 90px;
+    text-align: center;
+}
+
+.politicaPrivacidad_container_descargar h5 {
+    font-family: sans-serif;
+    color: var(--colorTextoP);
+    margin-bottom: 30px;
+}
+

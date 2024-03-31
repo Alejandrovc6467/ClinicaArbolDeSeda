@@ -36,3 +36,86 @@
     margin-bottom: 30px;
 }
 
+
+.container_Map {
+
+    margin-top: 80px;
+    text-align: center;
+}
+
+ h3 {
+    font-family: var(--Permanent-Marker);
+    color: var(--colorBaseVeterinaria);
+    margin-bottom: 50px;
+}
+
+.container_Map iframe{
+
+    width: 90%;
+    height: 400px;
+    max-width: 700px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.formulario_container  {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+
+.formularioContacto {
+    
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   max-width: 700px;
+   background-color: var(--colorFondoBody);
+   border-radius: 20px;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   padding: 30px 0;
+
+}
+
+
+.formularioContacto input, textarea, button {
+    
+    width: 200px;
+ 
+ }
+
+ .formularioContacto  label {
+    
+    font-family: sans-serif;
+    color: var(--colorTextoP);
+    
+ 
+ }
+
+ .formularioContacto input, textarea {
+    
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    margin: 20px 0;
+ 
+ }
+
+ .formularioContacto button {
+    
+  margin-top: 50PX;
+  border: none;
+  border-radius: 15px;
+  background-color:  var(--colorBaseVeterinaria);
+  color: white;
+  padding: 10px;
+ 
+ }

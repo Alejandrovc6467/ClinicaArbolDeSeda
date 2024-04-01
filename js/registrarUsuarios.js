@@ -251,7 +251,7 @@ const limpiarCamposTexto = () => {
 // esta funcion deberia ir en el getUsuariosMedicosCitas *********
 const registrarUsuarioEnLocalStorage = (cedula, nombre, apellidos, telefono, correo, contrasenia) => {
 
-    var usuarios = getLocalStorageUsuarios();
+    var usuarios = getUsuarios();
     
     const nuevoUsuario = {
         cedula: cedula,
@@ -279,7 +279,7 @@ const registrarUsuarioEnLocalStorage = (cedula, nombre, apellidos, telefono, cor
 const verificarExistenciaUsuario = (cedula) => {
 
    
-    var usuarios = getLocalStorageUsuarios();
+    var usuarios = getUsuarios();
 
     for (let i = 0; i < usuarios.length; i++) {
        

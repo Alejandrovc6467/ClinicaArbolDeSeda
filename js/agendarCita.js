@@ -101,30 +101,24 @@ const renderCalendar = () => {
 
 };
 
-
 // botones anterior y siguiente del calendario
-navs.forEach((nav) => {
-   nav.addEventListener("click", (e) => {
-        const btnId = e.target.id;
+navs.forEach(icon => { // obtengo los botones  y les pongo el addEventListener
+  icon.addEventListener("click", () => { 
+     
+      month = icon.id === "prev" ? month - 1 : month + 1;
 
-        if (btnId === "prev" && month === 0) {
-        year--;
-        month = 11;
-        } else if (btnId === "next" && month === 11) {
-        year++;
-        month = 0;
-        } else {
-        month = btnId === "next" ? month + 1 : month - 1;
-        }
-
-        date = new Date(year, month, new Date().getDate());
-        year = date.getFullYear();
-        month = date.getMonth();
-
-        renderCalendar();
-    });
-
+      if(month < 0 || month > 11) { 
+          
+          date = new Date(year, month, new Date().getDate());
+          year = date.getFullYear(); 
+          month = date.getMonth(); 
+      } else {
+          date = new Date(); 
+      }
+      renderCalendar(); 
+  });
 });
+
 
 renderCalendar();
 

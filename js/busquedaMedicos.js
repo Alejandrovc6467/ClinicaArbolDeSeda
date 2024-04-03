@@ -1,14 +1,14 @@
 
 const  initializeTable = () => {
-    const table = document.getElementById('myTable').getElementsByTagName('tbody')[0];
-    const rowsPerPage = 3; // Cambiar a 5 para mostrar 5 filas por página
+    const table = document.getElementById('tablaMedicos').getElementsByTagName('tbody')[0];
+    const rowsPerPage = 7; // Cambiar a 5 para mostrar 5 filas por página
     let currentPage = 1;
     
 
-    //var originalData = getMedicos();
+    var originalData = getMedicos();
     // esta bien solo acomodar los parametros de los medicos bien
 
-    
+    /*
     let originalData = [
         { name: "Alicia", age: 30, country: "España" },
         { name: "Alicia", age: 45, country: "Australia" },
@@ -31,6 +31,7 @@ const  initializeTable = () => {
         { name: "Sergio", age: 38, country: "Rusia" },
         { name: "Tatiana", age: 41, country: "India" }
     ];
+    */
     
 
     let filteredData = [];
@@ -42,15 +43,17 @@ const  initializeTable = () => {
         table.innerHTML = '';
         for (let i = startIndex; i < endIndex; i++) {
             const row = table.insertRow();
-            row.insertCell(0).innerText = data[i].name;
-            row.insertCell(1).innerText = data[i].age;
-            row.insertCell(2).innerText = data[i].country;
+            row.insertCell(0).innerText = data[i].cedula;
+            row.insertCell(1).innerText = data[i].nombre;
+            row.insertCell(2).innerText = data[i].apellidos;
+            row.insertCell(3).innerText = data[i].especialidad;
+            row.insertCell(4).innerText = data[i].telefono;
         }
     };
 
     const  updatePagination = (filteredDataLength = originalData.length) => {
         const totalPages = Math.ceil(filteredDataLength / rowsPerPage);
-        const pagination = document.querySelector('.pagination');
+        const pagination = document.querySelector('.paginacion');
         pagination.innerHTML = '';
 
         const prevButton = createPaginationButton('Anterior');
@@ -112,11 +115,14 @@ const  initializeTable = () => {
     };
 
     const filterTable = () => {
-        const filterName = document.getElementById('searchName').value.toLowerCase();
-        const filterAge = document.getElementById('searchAge').value.toLowerCase();
+        const filtroCedula = document.getElementById('buscarCedula').value.toLowerCase();
+        const filtroNombre = document.getElementById('buscarNombre').value.toLowerCase();
+        const filtroApellidos = document.getElementById('buscarApellidos').value.toLowerCase();
+        const filtroEspecialidad = document.getElementById('buscarEspecialidad').value.toLowerCase();
+        const filtroTelefono = document.getElementById('buscarTelefono').value.toLowerCase();
 
         filteredData = originalData.filter(function(item) {
-            return item.name.toLowerCase().includes(filterName) && item.age.toString().includes(filterAge);
+            return item.cedula.toString().includes(filtroCedula) &&  item.nombre.toLowerCase().includes(filtroNombre) &&  item.apellidos.toLowerCase().includes(filtroApellidos) &&  item.especialidad.toLowerCase().includes(filtroEspecialidad) && item.telefono.toString().includes(filtroTelefono);
         });
 
         currentPage = 1;
@@ -127,8 +133,11 @@ const  initializeTable = () => {
     showPage(currentPage, originalData);
     updatePagination();
 
-    document.getElementById('searchName').addEventListener('keyup', filterTable);
-    document.getElementById('searchAge').addEventListener('keyup', filterTable);
+    document.getElementById('buscarCedula').addEventListener('keyup', filterTable);
+    document.getElementById('buscarNombre').addEventListener('keyup', filterTable);
+    document.getElementById('buscarApellidos').addEventListener('keyup', filterTable);
+    document.getElementById('buscarEspecialidad').addEventListener('keyup', filterTable);
+    document.getElementById('buscarTelefono').addEventListener('keyup', filterTable);
 }
 
 document.addEventListener("DOMContentLoaded", initializeTable);

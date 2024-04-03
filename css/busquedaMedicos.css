@@ -1,31 +1,115 @@
 
-table {
-    border-collapse: collapse;
-    width: 100%;
+.busquedaMedicos{
+    overflow-x: auto;
+    margin-top: 50px;
+    padding: 15px;
 }
-th, td {
-    border: 1px solid #dddddd;
+
+.tablaContainer {
+    background-color: #4CAF50;
+    background-color: var(--colorFondoBody);
+    width: 100%;
+    min-width: 1200px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    font-family: sans-serif;
+    color: var(--colorTextoP);
+}
+
+
+
+.tablaMedicos thead input{
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid var(--lineadivisora);
+    background-color: var(--colorFondoBody);
+    color: var(--colorTextoP);
+ 
+}
+
+.inputsBusquedasContainer input{
+   border-radius: 5px;
+   padding: 10px;
+   font-size: 15px;
+   border: 1px solid var(--lineadivisora);
+   background-color: var(--colorFondoBody);
+   color: var(--colorTextoP);
+}
+
+
+.tablaMedicos thead input:focus {
+    outline: none;
+    border: 1px solid #86b7fe;
+    box-shadow: 0px 0px 0px 3px #c2dbfe;
+}
+
+.tablaMedicos thead input::placeholder {
+    color: var(--colorTextoP);
+}
+
+
+
+
+/*tabla*/
+.tablaMedicos{
+    margin: 15px 0;
+    padding-top: 10px;
+    border-collapse: collapse;/*quito cualquier espacio entre las celdas*/
+    width: 100%;
+    border-bottom: 1px solid var(--lineadivisora);
+}
+
+.tablaMedicos tr {
+    border: none;
+}
+
+.tablaMedicos thead {
+    font-family: var(--Permanent-Marker);
+    color: var(--colorBaseVeterinaria);
+}
+
+
+
+.tablaMedicos thead tr:nth-child(1) {
+    border-bottom: 1px solid var(--lineadivisora); /* Cambia el color y el grosor según tus necesidades */
+}
+
+.tablaMedicos th, td {
     text-align: left;
     padding: 8px;
 }
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+
+.tablaMedicos tbody tr:nth-child(odd) {
+    background-color: #e8edf5;
 }
-.pagination {
+
+
+
+
+/*paginacion*/
+.paginacion {
     display: inline-block;
 }
-.pagination a {
+
+.paginacion a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
-    margin: 0 4px;
+    margin: 0 2px;
+    border-radius: 5px;
+    color: var(--colorTextoP);
 }
-.pagination a.active {
-    background-color: #4CAF50;
+
+.paginacion a.active {
+    background-color: var(--colorBaseVeterinaria);
     color: white;
-    border: 1px solid #4CAF50;
 }
-.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/*aplique el hover solo si no tiene la clase active un la etiqueta a, genial*/
+.paginacion a:hover:not(.active) {background-color: rgb(234, 238, 251);}

@@ -66,6 +66,16 @@ const getMedicos = () => {
             "especialidad": "Neurólogo",
             "contrasenia": "1!Aaaaaa",
             "rol": "medico"
+        },
+        {
+            "cedula": "3-0504-5124",
+            "nombre": "Alberto",
+            "apellidos": "Luna",
+            "telefono": "6467-0187",
+            "correo": "albertoluna@gmail.com",
+            "especialidad": "Neurólogo",
+            "contrasenia": "1!Aaaaaa",
+            "rol": "medico"
         }
     
     ];

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/login.css?5454">
     <link rel="stylesheet" href="css/registroUsuarios.css">
     <link rel="stylesheet" href="css/carruselServiciosMedicos.css?81">
-    <link rel="stylesheet" href="css/busquedaMedicos.css?1">
+    <link rel="stylesheet" href="css/busquedaMedicos.css?2">
     <link rel="stylesheet" href="css/footer.css?2">
 
 </head>
@@ -55,20 +55,44 @@
     <main data-aos="fade-right" data-aos-duration="1500">
 
         
-        <input type="text" id="searchName" placeholder="Filtrar por nombre...">
-        <input type="text" id="searchAge" placeholder="Filtrar por edad...">
-        <table id="myTable">
-        <thead>
-            <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Country</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        </table>
+        <div class="busquedaMedicos">
 
-        <div class="pagination"></div>
+            <div class="tablaContainer">
+
+
+                <table id="tablaMedicos" class="tablaMedicos">
+                    <thead>
+
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Especialidad</th>
+                            <th>Télefono</th>
+                        </tr>
+                        
+                        <tr>
+                            <th><input type="text" id="buscarCedula" placeholder="Filtrar por Cédula..."></th>
+                            <th><input type="text" id="buscarNombre" placeholder="Filtrar por Nombre..."></th>
+                            <th><input type="text" id="buscarApellidos" placeholder="Filtrar por Apellidos..."></th>
+                            <th><input type="text" id="buscarEspecialidad" placeholder="Filtrar por Especialidad..."></th>    
+                            <th><input type="text" id="buscarTelefono" placeholder="Filtrar por Telefono..."></th>  
+                        </tr>
+                        
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <div class="paginacion">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        
 
     </main>
 
@@ -98,7 +122,7 @@
 
     <script src="js/serverAPI.js?3217"></script>
     <script src="js/StyleScript.js"></script>
-    <script src="js/busquedaMedicos.js?65"></script>
+    <script src="js/busquedaMedicos.js?3245"></script>
 
     <!--quitar es solo para estar revisando el localStorege desde aqui -->
    

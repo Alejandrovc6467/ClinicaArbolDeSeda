@@ -252,6 +252,11 @@ const limpiarCamposTexto = () => {
 const registrarUsuarioEnLocalStorage = (cedula, nombre, apellidos, telefono, correo, contrasenia) => {
 
     var usuarios = getUsuarios();
+
+    var contraseniaHash = encriptarPassword(contrasenia);
+
+    console.log(contraseniaHash);
+    
     
     const nuevoUsuario = {
         cedula: cedula,
@@ -259,7 +264,7 @@ const registrarUsuarioEnLocalStorage = (cedula, nombre, apellidos, telefono, cor
         apellidos: apellidos,
         telefono: telefono,
         correo: correo,
-        contrasenia: contrasenia,
+        contrasenia: contraseniaHash,
         rol: "usuario"
     };
    

@@ -60,13 +60,13 @@ document.getElementById("cedula").addEventListener("input", function() {
 
 const verificarLogin = (cedula, contrasenia)=>{
 
-    //falta implementar la ecriptacion de la password, eso debria ir aqui
+    var contraseniaHash = encriptarPassword(contrasenia);
 
     var usuarios = getUsuarios();
 
     for (let i = 0; i < usuarios.length; i++) {
        
-        if (usuarios[i].cedula === cedula && usuarios[i].contrasenia === contrasenia ) {
+        if (usuarios[i].cedula === cedula && usuarios[i].contrasenia === contraseniaHash  ) {
             return true
         }
     }
@@ -75,12 +75,11 @@ const verificarLogin = (cedula, contrasenia)=>{
 
     for (let i = 0; i < medicos.length; i++) {
        
-        if (medicos[i].cedula === cedula && medicos[i].contrasenia === contrasenia ) {
+        if (medicos[i].cedula === cedula && medicos[i].contrasenia === contraseniaHash ) {
             return true
         }
     }
    
-
     return false;
 
 };

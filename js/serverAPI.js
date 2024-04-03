@@ -44,7 +44,7 @@ const getMedicos = () => {
             "telefono": "8888-9999",
             "correo": "juanperez@gmail.com",
             "especialidad": "Cardiólogo",
-            "contrasenia": "1!Aaaaaa",
+            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
             "rol": "medico"
         },
         {
@@ -54,7 +54,7 @@ const getMedicos = () => {
             "telefono": "6666-5555",
             "correo": "mariagomez@gmail.com",
             "especialidad": "Psicólogo",
-            "contrasenia": "1!Aaaaaa",
+            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
             "rol": "medico"
         },
         {
@@ -64,7 +64,7 @@ const getMedicos = () => {
             "telefono": "4444-7777",
             "correo": "carlosmartinez@gmail.com",
             "especialidad": "Neurólogo",
-            "contrasenia": "1!Aaaaaa",
+            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
             "rol": "medico"
         },
         {
@@ -74,7 +74,7 @@ const getMedicos = () => {
             "telefono": "6467-0187",
             "correo": "albertoluna@gmail.com",
             "especialidad": "Neurólogo",
-            "contrasenia": "1!Aaaaaa",
+            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
             "rol": "medico"
         }
     

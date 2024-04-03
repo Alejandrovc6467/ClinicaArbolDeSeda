@@ -399,6 +399,8 @@ const abrirFecha = (year, month, day) => {
   // validar si la sesion es de medico nunca llamar es metodo
   habilitarBoton();
 
+  limpiarCampos();
+
   removerSeleccionEnLosDemasElmentos(day);
   
   setFechaEnInputModalStandar(year, month, day);
@@ -407,7 +409,52 @@ const abrirFecha = (year, month, day) => {
 
   console.log("Clicked on date:", day , month+1, year );
 
+  cargarSelectConMedicos();
 };
+
+
+const cargarSelectConMedicos = () => {
+  const listaMedicos = getMedicos();
+  const selectMedicos = document.getElementById('cedulaMedicoInput');
+
+  // Limpiar opciones existentes
+  selectMedicos.innerHTML = '';
+
+  
+  // Agregar la opción inicial vacía
+  const optionInicial = document.createElement('option');
+  optionInicial.value = '';
+  optionInicial.textContent = 'Selecciona un médico'; 
+  selectMedicos.appendChild(optionInicial);
+  
+
+  // Agregar las nuevas opciones
+  listaMedicos.forEach(medico => {
+    const option = document.createElement('option');
+    option.value = medico.cedula;
+    option.textContent = `${medico.cedula} - ${medico.nombre} ${medico.apellidos}`;
+    selectMedicos.appendChild(option);
+  });
+};
+
+
+const cargarSelectConEspecialidad = (cedulaMedico) => {
+  // Obtener el médico correspondiente a la cédula
+  var medico = getMedico(cedulaMedico);
+  console.log(medico.especialidad);
+
+  document.getElementById('especialidadInput').value = medico.especialidad;
+
+};
+
+
+// Escuchar el evento change en el select de médicos
+document.getElementById('cedulaMedicoInput').addEventListener('change', (event) => {
+
+  const cedulaMedicoSeleccionado = event.target.value;
+  cargarSelectConEspecialidad(cedulaMedicoSeleccionado);
+
+});
 
 
 // Event listener para el evento de click del boton "agregar nueva cita" y mostar el modal standard
@@ -544,7 +591,7 @@ const abrirModalActualizarCita = (id) => {
   var cita =  getCitaById(id);
 
   document.getElementById("horaInput").value = cita.hora;
-  document.getElementById("especialidadInput").value = cita.especialidad;
+  document.getElementById('especialidadInput').value = cita.especialidad;
   document.getElementById("cedulaMedicoInput").value = cita.cedulaMedico;
 
   setIdCitaInputOculto(id);

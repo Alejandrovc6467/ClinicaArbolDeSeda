@@ -48,7 +48,6 @@
         </label>
 
         <nav class="navbar">
-            <a href="login.html">Inicio de sesión</a>
             <a href="agendarCita.html">Agendar de citas</a>
             <a href="busquedaMedicos.html">Búsqueda de médicos</a>
             <a href="servicios.html">Servicios</a>
@@ -150,9 +149,7 @@
     
                     <div class="agendarCita_containerInputs">
 
-
                         <input type="hidden" id="idCitaInput" name="idCitaInput">
-
 
                         <div class="containerInput_agendarCita">
                             <label for="fecha">Fecha:</label><br><br>
@@ -173,29 +170,19 @@
                                 <option value="16:00">16:00</option>
                             </select>
                         </div>
-
-                        <div class="containerInput_agendarCita">
-                            <label for="especialidadInput">Especialidad:</label>
-                            <select id="especialidadInput" name="especialidadInput">
-                                <option value="Cardiólogo">Cardiólogo</option>
-                                <option value="Neurólogo">Neurólogo</option>
-                                <option value="Psicólogo">Psicólogo</option>
-                            </select>
-                        </div>
-
+                       
                         <div class="containerInput_agendarCita">
                             <label for="cedulaMedicoInput">CédulaMédico:</label>
                             <select id="cedulaMedicoInput" name="cedulaMedicoInput">
-                                <option value="3-0504-0220">3-0504-0220</option>
-                                <option value="3-0504-0265">3-0504-0265</option>
-                                <option value="3-0504-0975">3-0504-0975</option>
-                                <option value="3-0504-5124">3-0504-5124</option>
+                                
                             </select>
                         </div>
-
                         
+                        <div class="containerInput_agendarCita">
+                            <label for="especialidadInput">Especialidad:</label><br><br>
+                            <input type="text" id="especialidadInput" name="especialidadInput" required disabled>
+                        </div>
 
-    
                     </div>
     
                     <input type="submit" id="botonSubmitFormAgendarCita" value="Agendar Cita">
@@ -232,7 +219,7 @@
 
     <script src="js/StyleScript.js?32147"></script>
     <script src="js/serverAPI.js?9687"></script>
-    <script src="js/agendarCita.js?63"></script>
+    <script src="js/agendarCita.js?254"></script>
    
     <script>
         logout();

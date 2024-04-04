@@ -185,36 +185,44 @@ const  getIdCitaInputOculto = (valor) => {
 const actualizarCita = () => {
 
   const {id, fecha, hora, especialidad, cedulaMedico} = getDatosFormularioAgendarCitaUpdate();
-  
-  if(verifcarHorarioDeCita(fecha, hora, cedulaMedico)){
 
-    if( !(getCitaById(id)) ){
-     
-      if(updateCita (id, hora, especialidad, cedulaMedico)){
+  if(id != "" && fecha != "" && hora != "" && especialidad != "" && cedulaMedico != "" ){
 
-        mostrarModalNotificacion("Cita actualizada correctamente");
-
-        const partesFecha = fecha.split("/");
-        const dia = partesFecha[0];
-        const mes = partesFecha[1];
-        const anio = partesFecha[2];
       
-        //actualizar las citas
-        getCitasDelDia(dia, parseInt(mes, 10) - 1, anio);
+    if(verifcarHorarioDeCita(fecha, hora, cedulaMedico)){
 
+      if( !(getCitaById(id)) ){
+      
+        if(updateCita (id, hora, especialidad, cedulaMedico)){
+
+          mostrarModalNotificacion("Cita actualizada correctamente");
+
+          const partesFecha = fecha.split("/");
+          const dia = partesFecha[0];
+          const mes = partesFecha[1];
+          const anio = partesFecha[2];
+        
+          //actualizar las citas
+          getCitasDelDia(dia, parseInt(mes, 10) - 1, anio);
+
+        }else{
+          mostrarModalNotificacion("Cita no actualizada, Intente nuevamente");
+        }
+        
       }else{
-        mostrarModalNotificacion("Cita no actualizada, Intente nuevamente");
+        mostrarModalNotificacion("El id de la cita a actualizar no está registrada");
       }
-      
+    
+    
     }else{
-      mostrarModalNotificacion("El id de la cita a actualizar no está registrada");
+      mostrarModalNotificacion("Ya existe una cita agendada para esa fecha y hora con el medico seleccionado");
     }
-   
-   
-  }else{
-    mostrarModalNotificacion("Ya existe una cita agendada para esa fecha y hora con el medico seleccionado");
-  }
 
+  
+  }else{
+    mostrarModalNotificacion("Completa todos los espacios");
+  }
+ 
 
 };
 
@@ -420,12 +428,12 @@ const cargarSelectConMedicos = () => {
   // Limpiar opciones existentes
   selectMedicos.innerHTML = '';
 
-  
   // Agregar la opción inicial vacía
   const optionInicial = document.createElement('option');
   optionInicial.value = '';
-  optionInicial.textContent = 'Selecciona un médico'; 
+  optionInicial.textContent = ''; 
   selectMedicos.appendChild(optionInicial);
+  
   
 
   // Agregar las nuevas opciones
@@ -435,6 +443,7 @@ const cargarSelectConMedicos = () => {
     option.textContent = `${medico.cedula} - ${medico.nombre} ${medico.apellidos}`;
     selectMedicos.appendChild(option);
   });
+
 };
 
 
@@ -545,7 +554,7 @@ const getDatosFormularioAgendarCitaUpdate = () => {
 
 };
 
-
+//limpiar campos formulario
 const limpiarCampos = () => {
 
   document.getElementById("horaInput").value = "";
@@ -554,7 +563,7 @@ const limpiarCampos = () => {
  
 };
 
-
+//validar campos formulario
 const validarCamposVacios = (hora, especialidad, cedulaMedico) => {
 
   if (hora === "" || especialidad === "" || cedulaMedico === "") {
@@ -564,7 +573,7 @@ const validarCamposVacios = (hora, especialidad, cedulaMedico) => {
   return true; // Todos los campos tienen valores
 };
 
-
+//borrar cita
 const  borrarCita = (id) => {
 
   console.log(getCitaById(id));
@@ -585,7 +594,7 @@ const  borrarCita = (id) => {
 
 };
 
-
+//abrir modal actualizar cita
 const abrirModalActualizarCita = (id) => {
 
   var cita =  getCitaById(id);

@@ -352,14 +352,19 @@ const actualizarEstadoCita = (id) => {
 
     var citas = getCitas();
 
+    var resultado;
+
     for (let i = 0; i < citas.length; i++) {
        
         if (citas[i].id === id) {
 
             if(citas[i].estado === "Pendiente"){
                 citas[i].estado = "Aprobado";
+                resultado = true;
+                
             }else{
                 citas[i].estado = "Pendiente";
+                resultado = false;
             }
            
         }
@@ -368,7 +373,7 @@ const actualizarEstadoCita = (id) => {
 
     localStorage.setItem("citas", JSON.stringify(citas));
 
-    return true;
+    return resultado;
     
 };
 

@@ -501,6 +501,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
             limpiarCampos();
             cerrarModalStandard();
 
+            // codigo email para enviarlo al medico
+            
+
+            // fin email code
+
+
+
             const partesFecha = fecha.split("/");
             const dia = partesFecha[0];
             const mes = partesFecha[1];
@@ -612,10 +619,41 @@ const abrirModalActualizarCita = (id) => {
 
 
 const cambiarEstadoCita = (id) => {
-  
-  actualizarEstadoCita(id);
 
-  var cita =  getCitaById(id);
+  const cita = getCitaById(id);
+
+  const paciente = getUsuario(cita.usuarioCedula);
+
+  const medico = getMedico(cita.cedulaMedico);
+
+  console.log(cita);
+  console.log(paciente);
+  console.log(medico);
+
+
+  
+  if(actualizarEstadoCita(id)){
+
+    emailjs.send("service_wx19xrb","template_6eali6n",{
+      from_name: "Clínica Árbol de seda",
+      to_name: paciente.nombre + " " + paciente.apellidos,
+      message: "Su cita del día: " + cita.fecha + " a las " + cita.hora + " con el médico: " + medico.nombre + " " + medico.apellidos +" en la especialidad: " + cita.especialidad + " fue APROBADA, recuerda ser puntual",
+      to_email: paciente.correo,
+      });
+
+  }else{
+
+    emailjs.send("service_wx19xrb","template_6eali6n",{
+      from_name: "Clínica Árbol de seda",
+      to_name: paciente.nombre + " " + paciente.apellidos,
+      message: "Su cita del día: " + cita.fecha + " a las " + cita.hora + " con el médico: " + medico.nombre + " " + medico.apellidos +" en la especialidad: " + cita.especialidad + " fue CANCELADA, nuestro médico se disculpa por los inconvenientes y te envita a agedar una nueva cita",
+      to_email: paciente.correo,
+      });
+
+  }
+  
+  
+  
  
   const partesFecha = cita.fecha.split("/");
   const dia = partesFecha[0];

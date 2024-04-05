@@ -1,0 +1,90 @@
+.restablecimientoContrasenia{
+    display: flex;
+    justify-content: center;
+}
+
+
+.restablecimientoContrasenia .titler{
+    font-family: var( --Permanent-Marker);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--colorBaseVeterinaria);
+    margin-bottom: 20px;
+   
+}
+
+.restablecimientoContrasenia p{
+    text-align: center;
+}
+
+
+.restablecimientoContrasenia form{
+   padding:  50px;
+   border-radius: 15px;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   width: 350px;
+   background-color: var(--colorFondoBody);
+}
+
+.restablecimientoContrasenia label {
+    margin-bottom: 30px;
+    font-family: sans-serif;
+    color: var(--colorTextoP);
+}
+
+.restablecimientoContrasenia input {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    background-color: var(--colorFondoBody); 
+    padding: 8px; 
+    font-size: 16px; 
+    border-radius: 15px;
+    outline: none; 
+    color: var(--colorstitulotargetas);
+    width: 100%;
+}
+
+.restablecimientoContrasenia input[type="text"] {
+    margin-bottom: 30px; /* Ajusta el valor del margen según tus necesidades */
+}
+
+.restablecimientoContrasenia input:focus {
+    border-color: var(--colorBaseVeterinaria);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+input[type="submit"] {
+    margin-top: 25px;
+    width: 100%;
+    color: white; 
+    background-color: var(--colorBaseVeterinaria); 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 15px; 
+    cursor: pointer;
+    font-size: 16px; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 30px;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+}
+
+.restablecimientoContrasenia a{
+    text-decoration: none;
+    color: var(--colorBaseVeterinaria);
+}
+
+.cambiarContraseniaInfo{
+    font-size: 13px;
+}
+
+
+@media all and (max-width:870px){
+    .restablecimientoContrasenia{
+        margin-top: 75px;
+    }
+}

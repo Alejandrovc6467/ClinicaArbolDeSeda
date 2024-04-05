@@ -197,6 +197,19 @@ const actualizarCita = () => {
 
           mostrarModalNotificacion("Cita actualizada correctamente");
 
+          const userCedula = getSessionStorageUser();
+
+          const paciente = getUsuario(userCedula);
+
+          const medico = getMedico(cedulaMedico);
+
+          emailjs.send("service_wx19xrb","template_6eali6n",{
+            from_name: "Clínica Árbol de Seda",
+            to_name: medico.nombre + " " + medico.apellidos,
+            message: "El paciente " + paciente.nombre + " " + paciente.apellidos + " quiere actualizar una cita agendada contigo el día: " + fecha + " a las: " + hora ,
+            to_email: medico.correo,
+          });
+
           const partesFecha = fecha.split("/");
           const dia = partesFecha[0];
           const mes = partesFecha[1];
@@ -502,6 +515,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
             cerrarModalStandard();
 
             // codigo email para enviarlo al medico
+
+            const paciente = getUsuario(userCedula);
+
+            const medico = getMedico(cedulaMedico);
+
+            emailjs.send("service_wx19xrb","template_6eali6n",{
+              from_name: "Clínica Árbol de Seda",
+              to_name: medico.nombre + " " + medico.apellidos,
+              message: "El paciente " + paciente.nombre + " " + paciente.apellidos + " quiere agendar una cita contigo el día: " + fecha + " a las: " + hora ,
+              to_email: medico.correo,
+            });
+        
             
 
             // fin email code
@@ -586,6 +611,18 @@ const  borrarCita = (id) => {
   console.log(getCitaById(id));
 
   var cita =  getCitaById(id);
+
+  const paciente = getUsuario(cita.usuarioCedula);
+
+  const medico = getMedico(cita.cedulaMedico);
+
+  emailjs.send("service_wx19xrb","template_6eali6n",{
+    from_name: "Clínica Árbol de Seda",
+    to_name: medico.nombre + " " + medico.apellidos,
+    message: "El paciente " + paciente.nombre + " " + paciente.apellidos + " eliminó la cita del día: " + cita.fecha + " a las: " + cita.hora ,
+    to_email: medico.correo,
+  });
+
  
   const partesFecha = cita.fecha.split("/");
   const dia = partesFecha[0];
@@ -635,7 +672,7 @@ const cambiarEstadoCita = (id) => {
   if(actualizarEstadoCita(id)){
 
     emailjs.send("service_wx19xrb","template_6eali6n",{
-      from_name: "Clínica Árbol de seda",
+      from_name: "Clínica Árbol de Seda",
       to_name: paciente.nombre + " " + paciente.apellidos,
       message: "Su cita del día: " + cita.fecha + " a las " + cita.hora + " con el médico: " + medico.nombre + " " + medico.apellidos +" en la especialidad: " + cita.especialidad + " fue APROBADA, recuerda ser puntual",
       to_email: paciente.correo,
@@ -644,9 +681,9 @@ const cambiarEstadoCita = (id) => {
   }else{
 
     emailjs.send("service_wx19xrb","template_6eali6n",{
-      from_name: "Clínica Árbol de seda",
+      from_name: "Clínica Árbol de Seda",
       to_name: paciente.nombre + " " + paciente.apellidos,
-      message: "Su cita del día: " + cita.fecha + " a las " + cita.hora + " con el médico: " + medico.nombre + " " + medico.apellidos +" en la especialidad: " + cita.especialidad + " fue CANCELADA, nuestro médico se disculpa por los inconvenientes y te envita a agedar una nueva cita",
+      message: "Su cita del día: " + cita.fecha + " a las " + cita.hora + " con el médico: " + medico.nombre + " " + medico.apellidos +" en la especialidad: " + cita.especialidad + " fue CANCELADA, nuestro médico se disculpa por los inconvenientes y te envita a agendar una nueva cita",
       to_email: paciente.correo,
       });
 

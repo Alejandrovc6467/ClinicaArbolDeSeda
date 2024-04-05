@@ -43,7 +43,7 @@ const getMedicos = () => {
                 "nombre": "Ana",
                 "apellidos": "González",
                 "telefono": "7777-8888",
-                "correo": "anagonzalez@gmail.com",
+                "correo": "alejandrovc6467@gmail.com",
                 "especialidad": "Dermatólogo",
                 "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
                 "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",

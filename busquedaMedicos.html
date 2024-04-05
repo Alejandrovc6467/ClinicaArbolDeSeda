@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/navbar.css?2323">
     <link rel="stylesheet" href="css/home.css?5454">
     <link rel="stylesheet" href="css/login.css?5454">
+    <link rel="stylesheet" href="css/modal.css?721">
     <link rel="stylesheet" href="css/registroUsuarios.css">
     <link rel="stylesheet" href="css/carruselServiciosMedicos.css?81">
     <link rel="stylesheet" href="css/busquedaMedicos.css?2">
@@ -67,15 +68,14 @@
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Especialidad</th>
-                            <th>Télefono</th>
+                            <th>Ver más</th>
                         </tr>
                         
                         <tr>
                             <th><input type="text" id="buscarCedula" placeholder="Filtrar por Cédula..."></th>
                             <th><input type="text" id="buscarNombre" placeholder="Filtrar por Nombre..."></th>
                             <th><input type="text" id="buscarApellidos" placeholder="Filtrar por Apellidos..."></th>
-                            <th><input type="text" id="buscarEspecialidad" placeholder="Filtrar por Especialidad..."></th>    
-                            <th><input type="text" id="buscarTelefono" placeholder="Filtrar por Telefono..."></th>  
+                            <th><input type="text" id="buscarEspecialidad" placeholder="Filtrar por Especialidad..."></th>
                         </tr>
                         
                     </thead>
@@ -113,6 +113,42 @@
 
     </footer>
 
+
+
+
+    
+    <div class="medicoModal_container" id="medicoModal_container">
+
+        <div class="modalMedico" id="modalMedico">
+
+            <div class="containerBotonCerrar_modalMedico">
+                <button class="containerBotonCerrar_modalMedico" id="cerrar_medicoModal">X</button>
+            </div>
+
+
+            <div class="container_datosMedicos">
+
+                <h2 id="nombreInfoMedico"></h2>
+
+                <div class="infoMedico">
+
+                    <p>Cédula:  <span id="cedulaInfoMedico"></span> </p>
+                    <p>Especilidad:  <span id="especialidadInfoMedico"></span> </p>
+                    <p>Horarios consulta:  <span id="horariosInfoMedico"></span> </p>
+                    <p>Teléfono:  <span id="telefonoInfoMedico"></span> </p>
+                    <p>Correo:  <span id="correoInfoMedico"></span> </p>
+                    <p>Biografía:</p>
+                    <p id="biografiaInfoMedico"></p>
+
+                </div>
+              
+            </div>
+           
+        </div>
+        
+    </div>
+
+
     <!-- Js animation -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -120,8 +156,8 @@
     </script>
 
     <script src="js/serverAPI.js?3217"></script>
-    <script src="js/StyleScript.js"></script>
-    <script src="js/busquedaMedicos.js?3245"></script>
+    <script src="js/modalMedico.js?8787"></script>
+    <script src="js/busquedaMedicos.js?1"></script>
 
     <!--quitar es solo para estar revisando el localStorege desde aqui -->
    

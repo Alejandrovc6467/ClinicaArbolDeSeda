@@ -8,30 +8,7 @@ const  initializeTable = () => {
     var originalData = getMedicos();
     // esta bien solo acomodar los parametros de los medicos bien
 
-    /*
-    let originalData = [
-        { name: "Alicia", age: 30, country: "España" },
-        { name: "Alicia", age: 45, country: "Australia" },
-        { name: "Alicia", age: 28, country: "Argentina" },
-        { name: "Daia", age: 35, country: "Brasil" },
-        { name: "Eia", age: 22, country: "Italia" },
-        { name: "Feia", age: 40, country: "México" },
-        { name: "Gabriela", age: 29, country: "Chile" },
-        { name: "Hugo", age: 33, country: "pitu" },
-        { name: "Isabel", age: 26, country: "Alemania" },
-        { name: "Juan", age: 31, country: "Perú" },
-        { name: "Karla", age: 37, country: "Estados Unidos" },
-        { name: "Luis", age: 42, country: "Colombia" },
-        { name: "María", age: 39, country: "Canadá" },
-        { name: "Natalia", age: 27, country: "Reino Unido" },
-        { name: "Óscar", age: 32, country: "Portugal" },
-        { name: "Patricia", age: 34, country: "Japón" },
-        { name: "Quim", age: 36, country: "Corea del Sur" },
-        { name: "Raquel", age: 25, country: "China" },
-        { name: "Sergio", age: 38, country: "Rusia" },
-        { name: "Tatiana", age: 41, country: "India" }
-    ];
-    */
+    
     
 
     let filteredData = [];
@@ -47,9 +24,72 @@ const  initializeTable = () => {
             row.insertCell(1).innerText = data[i].nombre;
             row.insertCell(2).innerText = data[i].apellidos;
             row.insertCell(3).innerText = data[i].especialidad;
-            row.insertCell(4).innerText = data[i].telefono;
+          
+
+            
+
+            // Crear el botón y asignarle la función con la cédula como argumento
+            const buttonCell = row.insertCell(4);
+            const button = document.createElement('button');
+            button.innerText = 'Ver más';
+            button.classList.add('verInfoMedicoButon'); // Agregar la clase "verInfoMedico"
+            button.addEventListener('click', function() {
+                abrirModalMedico(data[i].cedula);
+            });
+            buttonCell.appendChild(button);
+            
+
         }
     };
+
+
+
+    /*nuevo */
+    const abrirModalMedico = (cedula) =>{
+
+        const medico = getMedico(cedula);
+
+        
+        // Rellenar campos HTML con datos del objeto medico
+        document.getElementById('nombreInfoMedico').textContent = medico.nombre+" "+ medico.apellidos;
+        document.getElementById('cedulaInfoMedico').textContent = medico.cedula;
+        document.getElementById('especialidadInfoMedico').textContent = medico.especialidad;
+        document.getElementById('horariosInfoMedico').textContent = medico.horariosConsulta;
+        document.getElementById('telefonoInfoMedico').textContent = medico.telefono;
+        document.getElementById('correoInfoMedico').textContent = medico.correo;
+        document.getElementById('biografiaInfoMedico').textContent = medico.biografia;
+        
+        mostrarMedicoModal();
+
+    };
+
+
+    // Obtener el campo de entrada del input buscarCedula en directo
+    document.getElementById("buscarCedula").addEventListener("input", function() {
+        // Obtener el valor actual del campo
+        var valor = this.value;
+                
+        // Eliminar cualquier carácter que no sea un dígito o un guión
+        valor = valor.replace(/[^\d-]/g, "");
+
+        // Limitar la longitud de la cadena a 12 caracteres (#-####-####)
+        valor = valor.slice(0, 11);
+
+        // Verificar si la longitud actual permite insertar el guión automáticamente
+        if (valor.length > 1 && valor.charAt(1) !== '-') {
+            valor = valor.slice(0, 1) + '-' + valor.slice(1);
+        }
+        if (valor.length > 6 && valor.charAt(6) !== '-') {
+            valor = valor.slice(0, 6) + '-' + valor.slice(6);
+        }
+
+        // Actualizar el valor del campo con la máscara aplicada
+        this.value = valor;
+        
+    });
+
+    /**nuevo */
+
 
     const  updatePagination = (filteredDataLength = originalData.length) => {
         const totalPages = Math.ceil(filteredDataLength / rowsPerPage);
@@ -119,10 +159,10 @@ const  initializeTable = () => {
         const filtroNombre = document.getElementById('buscarNombre').value.toLowerCase();
         const filtroApellidos = document.getElementById('buscarApellidos').value.toLowerCase();
         const filtroEspecialidad = document.getElementById('buscarEspecialidad').value.toLowerCase();
-        const filtroTelefono = document.getElementById('buscarTelefono').value.toLowerCase();
+       
 
         filteredData = originalData.filter(function(item) {
-            return item.cedula.toString().includes(filtroCedula) &&  item.nombre.toLowerCase().includes(filtroNombre) &&  item.apellidos.toLowerCase().includes(filtroApellidos) &&  item.especialidad.toLowerCase().includes(filtroEspecialidad) && item.telefono.toString().includes(filtroTelefono);
+            return item.cedula.toString().includes(filtroCedula) &&  item.nombre.toLowerCase().includes(filtroNombre) &&  item.apellidos.toLowerCase().includes(filtroApellidos) &&  item.especialidad.toLowerCase().includes(filtroEspecialidad);
         });
 
         currentPage = 1;
@@ -137,7 +177,7 @@ const  initializeTable = () => {
     document.getElementById('buscarNombre').addEventListener('keyup', filterTable);
     document.getElementById('buscarApellidos').addEventListener('keyup', filterTable);
     document.getElementById('buscarEspecialidad').addEventListener('keyup', filterTable);
-    document.getElementById('buscarTelefono').addEventListener('keyup', filterTable);
+    
 }
 
 document.addEventListener("DOMContentLoaded", initializeTable);

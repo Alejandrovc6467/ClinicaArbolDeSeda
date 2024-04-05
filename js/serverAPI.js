@@ -34,50 +34,108 @@ const getUsuario = (cedula) => {
 
 
 // Medicos 
-const getMedicos = () => {
+const getMedicos = () => {      
 
-    medicos =[
-        { 
-            "cedula": "3-0504-0220",
-            "nombre": "Juan",
-            "apellidos": "Pérez",
-            "telefono": "8888-9999",
-            "correo": "juanperez@gmail.com",
-            "especialidad": "Cardiólogo",
-            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
-            "rol": "medico"
-        },
-        {
-            "cedula": "3-0504-0265",
-            "nombre": "María",
-            "apellidos": "Gómez",
-            "telefono": "6666-5555",
-            "correo": "mariagomez@gmail.com",
-            "especialidad": "Psicólogo",
-            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
-            "rol": "medico"
-        },
-        {
-            "cedula": "3-0504-0975",
-            "nombre": "Carlos",
-            "apellidos": "Martínez",
-            "telefono": "4444-7777",
-            "correo": "carlosmartinez@gmail.com",
-            "especialidad": "Neurólogo",
-            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
-            "rol": "medico"
-        },
-        {
-            "cedula": "3-0504-5124",
-            "nombre": "Alberto",
-            "apellidos": "Luna",
-            "telefono": "6467-0187",
-            "correo": "albertoluna@gmail.com",
-            "especialidad": "Neurólogo",
-            "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
-            "rol": "medico"
-        }
-    
+    medicos = [
+        
+            {
+                "cedula": "1-2345-6789",
+                "nombre": "Ana",
+                "apellidos": "González",
+                "telefono": "7777-8888",
+                "correo": "anagonzalez@gmail.com",
+                "especialidad": "Dermatólogo",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Apasionada por cuidar la piel y mejorar la salud dermatológica. Brindo atención médica profesional y personalizada."
+            },
+            {
+                "cedula": "9-8765-4321",
+                "nombre": "Luisa",
+                "apellidos": "Martínez",
+                "telefono": "5555-6666",
+                "correo": "luisamartinez@gmail.com",
+                "especialidad": "Pediatra",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Dedicada a brindar atención pediátrica integral. Me apasiona cuidar y promover la salud de los niños."
+            },
+            {
+                "cedula": "8-7654-3210",
+                "nombre": "Carlos",
+                "apellidos": "Sánchez",
+                "telefono": "3333-4444",
+                "correo": "carlossanchez@gmail.com",
+                "especialidad": "Psiquiatra",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Experto en salud mental, brindo atención profesional y empática para mejorar la calidad de vida."
+            },
+            {
+                "cedula": "7-6543-2109",
+                "nombre": "María",
+                "apellidos": "López",
+                "telefono": "2222-3333",
+                "correo": "marialopez@gmail.com",
+                "especialidad": "Oftalmólogo",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Apasionada por la salud ocular. Ofrezco atención oftalmológica de calidad para cuidar la visión de mis pacientes."
+            },
+            {
+                "cedula": "6-5432-1098",
+                "nombre": "Jorge",
+                "apellidos": "Hernández",
+                "telefono": "9999-0000",
+                "correo": "jorgehernandez@gmail.com",
+                "especialidad": "Ginecólogo",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Comprometido con la salud de las mujeres. Brindo atención ginecológica integral y promuevo el bienestar femenino."
+            },
+            {
+                "cedula": "5-4321-0987",
+                "nombre": "Pedro",
+                "apellidos": "Díaz",
+                "telefono": "1111-2222",
+                "correo": "pedrodiaz@gmail.com",
+                "especialidad": "Nutricionista",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Promuevo una alimentación saludable y equilibrada para mejorar la calidad de vida y prevenir enfermedades."
+            },
+            {
+                "cedula": "4-3210-9876",
+                "nombre": "Sofía",
+                "apellidos": "Ramírez",
+                "telefono": "6666-7777",
+                "correo": "sofiaramirez@gmail.com",
+                "especialidad": "Dentista",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Apasionada por cuidar la salud bucal. Brindo tratamientos dentales de calidad para mantener sonrisas saludables."
+            },
+            {
+                "cedula": "3-2109-8765",
+                "nombre": "Elena",
+                "apellidos": "Vargas",
+                "telefono": "4444-5555",
+                "correo": "elenavargas@gmail.com",
+                "especialidad": "Endocrinólogo",
+                "horariosConsulta": "Lunes - Viernes (8am - 4pm)",
+                "contrasenia": "1e3fd52c5d3e2d3d09d90bf9262f56c79df95059382310b988f0f9448bdf119e",
+                "rol": "medico",
+                "biografia": "Especialista en equilibrio hormonal. Brindo atención médica integral para mejorar la salud endocrina de mis pacientes."
+            }
+        
+
     ];
 
   

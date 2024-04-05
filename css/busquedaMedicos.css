@@ -9,7 +9,7 @@
     background-color: #4CAF50;
     background-color: var(--colorFondoBody);
     width: 100%;
-    min-width: 1200px;
+    min-width: 1300px;
     padding: 15px;
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -113,3 +113,31 @@
 
 /*aplique el hover solo si no tiene la clase active un la etiqueta a, genial*/
 .paginacion a:hover:not(.active) {background-color: rgb(234, 238, 251);}
+
+
+
+
+.verInfoMedicoButon {
+
+    border: none;
+    color: white;
+    background-color: var(--colorBaseVeterinaria);
+    border-radius: 15px;
+    padding: 7px 20px;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+
+
+
+
+.container_datosMedicos h2{
+ color: var(--colorBaseVeterinaria);
+ font-family: var(--Permanent-Marker);
+}
+
+.infoMedico{
+    margin-top: 30px;
+    text-align: left;
+}

@@ -27,11 +27,16 @@
    background-color: var(--colorFondoBody);
 }
 
+
+
 .restablecimientoContrasenia label {
+    
     margin-bottom: 30px;
     font-family: sans-serif;
     color: var(--colorTextoP);
 }
+
+
 
 .restablecimientoContrasenia input {
     margin-top: 10px;

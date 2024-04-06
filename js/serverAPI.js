@@ -27,6 +27,28 @@ const getUsuario = (cedula) => {
 };
 
 
+const actualizarContraseniaUsuario = (cedula,  newContrasenia) => {
+
+    console.log(cedula, "cedula que me llega a actualizar");
+
+    var usuarios = getUsuarios();
+
+    for (let i = 0; i < usuarios.length; i++) {
+
+        if (usuarios[i].cedula === cedula  ) {
+
+            usuarios[i].contrasenia = newContrasenia;
+            break;
+
+        }
+    };
+
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+   
+    return true;
+};
+
+
 // falta el pasar el registrar usuario que esta en registrarUsuario.html aqui, aqui deberia de estar 
 
 
@@ -160,6 +182,27 @@ const getMedico = (cedula) => {
     return null;
 };
 
+
+const actualizarContraseniaMedico = (cedula,  newContrasenia) => {
+
+    console.log(cedula, "cedula que me llega a actualizar");
+
+    var medicos = getMedicos();
+
+    for (let i = 0; i < medicos.length; i++) {
+
+        if (medicos[i].cedula === cedula  ) {
+
+            medicos[i].contrasenia = newContrasenia;
+            break;
+
+        }
+    };
+
+    localStorage.setItem("medicos", JSON.stringify(medicos));
+   
+    return true;
+};
 
 
 

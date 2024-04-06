@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/login.css?5454">
     <link rel="stylesheet" href="css/modal.css?78">
     <link rel="stylesheet" href="css/registroUsuarios.css?656">
-    <link rel="stylesheet" href="css/restablecimientoContrasenia.css">
+    <link rel="stylesheet" href="css/restablecimientoContrasenia.css?147">
     <link rel="stylesheet" href="css/carruselServiciosMedicos.css?21">
     <link rel="stylesheet" href="css/footer.css?2">
 
@@ -60,10 +60,10 @@
 
                 <p class="titler">Restablecimiento de Contraseña</p>
 
-                <p>Ingrese su dirección de correo electrónico. Le enviaremos la contraseña de restablecimiento a la dirección de correo electrónico asociada.</p><br>
+                <p>Ingrese su cédula y le enviaremos la contraseña de restablecimiento a la dirección de correo electrónico asociada.</p><br><br>
 
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" required placeholder="example@email.com">
+                <label for="cedula" >Cédula de Identidad:</label><br>
+                <input type="text" id="cedula" name="cedula" required placeholder="#-####-####"><br>
                 
                 <input type="submit" value="Enviar">
 
@@ -114,7 +114,15 @@
     <script src="js/StyleScript.js?13697"></script>
     <script src="js/hash.js"></script>
     <script src="js/serverAPI.js?275"></script>
-    <script src="js/login.js?367"></script>
+    <script src="js/recuperarContrasenia.js"></script>
+
+
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+    emailjs.init('q346UrtQXiVUmVMrv')
+    </script>
     
 </body>
 

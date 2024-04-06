@@ -28,7 +28,7 @@ getNombreApellidosVariablesDeSesion();
 
 
 /* Calendario settings **************************************************************/
-
+//cargo los datos necesarios para agregar el calendario 
 const header = document.querySelector(".calendar h3");
 const dates = document.querySelector(".dates");
 const navs = document.querySelectorAll("#prev, #next");
@@ -52,7 +52,7 @@ let date = new Date();
 let month = date.getMonth();
 let year = date.getFullYear();
 
-
+// renderizo el calendario con los datos requeridos 
 const renderCalendar = () => {
 
   const start = new Date(year, month, 1).getDay();
@@ -125,19 +125,19 @@ renderCalendar();
 /* Calendario settings **************************************************************/
 
 
-
+// muestra el boton de agendar
 const  ocultarBotonFormAgendarCita = () => {
   var boton = document.getElementById("botonSubmitFormAgendarCita");
   boton.style.display = "none";
 };
 
-
+//muestra el boton agregar cita para los usuarios
 const  mostrarBotonFormAgendarCita = () => {
   var boton = document.getElementById("botonSubmitFormAgendarCita");
   boton.style.display = "inline";
 };
 
-
+// quitar el boton agendar para reemplazarlo con el boton de actualizar
 const agregarBotonActualizar = () => {
 
   // Verificar si ya existe un botón con el ID "actualizarCita"
@@ -158,7 +158,7 @@ const agregarBotonActualizar = () => {
 
 };
 
-
+// quitar el boton actualizar para reemplazarlo con el boton de agendar
 const  quitarBotonActualizar = () => {
   // Obtener el botón de actualizar
   var botonActualizar = document.getElementById("actualizarCita");
@@ -170,18 +170,18 @@ const  quitarBotonActualizar = () => {
   }
 };
 
-
+// seteo el valor a el input oaculto
 const  setIdCitaInputOculto = (valor) => {
   document.getElementById("idCitaInput").value = valor;
 };
 
-
+// obtengo el id de la cita del input oculto
 const  getIdCitaInputOculto = (valor) => {
   return document.getElementById("idCitaInput").value;
 };
 
 
-
+// actulaizar cita, revisando
 const actualizarCita = () => {
 
   const {id, fecha, hora, especialidad, cedulaMedico} = getDatosFormularioAgendarCitaUpdate();
@@ -258,9 +258,10 @@ const habilitarBoton = () => {
   
 };
 
+// desabilito el boton de enviar para los medicos
 desabilitarBoton();
 
-
+// remuevo los select de los demas elementos, necesario para que no se hagan replicas
 const removerSeleccionEnLosDemasElmentos = (day) => {
 
   // Obtener el elemento del día seleccionado
@@ -279,7 +280,7 @@ const removerSeleccionEnLosDemasElmentos = (day) => {
 
 };
 
-
+// setteo la fecha en el input del modal actualizar
 const setFechaEnInputModalStandar = (year, month, day) => {
 
   //setear inputDeFecha
@@ -289,7 +290,7 @@ const setFechaEnInputModalStandar = (year, month, day) => {
 
 };
 
-
+// obtengo todas las citas del dia seleccionado
 const getCitasDelDia = (day, month, year) => {
 
   console.log(day, month, year, "desde getCitas");
@@ -414,7 +415,7 @@ const getCitasDelDia = (day, month, year) => {
 
 };
 
-
+//abrir  fecha en la donde se hizo click 
 const abrirFecha = (year, month, day) => {
 
   // validar si la sesion es de medico nunca llamar es metodo
@@ -433,7 +434,7 @@ const abrirFecha = (year, month, day) => {
   cargarSelectConMedicos();
 };
 
-
+//cargo el select de medicos con todos los medicos disponibles
 const cargarSelectConMedicos = () => {
   const listaMedicos = getMedicos();
   const selectMedicos = document.getElementById('cedulaMedicoInput');
@@ -459,7 +460,7 @@ const cargarSelectConMedicos = () => {
 
 };
 
-
+//cargo el select de especialidad con la especialidad del medico que se recibe por parametro
 const cargarSelectConEspecialidad = (cedulaMedico) => {
   // Obtener el médico correspondiente a la cédula
   var medico = getMedico(cedulaMedico);
@@ -573,7 +574,7 @@ const getDatosFormularioAgendarCita = () => {
 
 };
 
-
+// obtengo los datos del formulario
 const getDatosFormularioAgendarCitaUpdate = () => {
 
   const id = document.getElementById("idCitaInput").value.trim();
@@ -654,7 +655,7 @@ const abrirModalActualizarCita = (id) => {
 
 };
 
-
+// cambia el estado de una cita segun el id
 const cambiarEstadoCita = (id) => {
 
   const cita = getCitaById(id);

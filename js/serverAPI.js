@@ -1,4 +1,6 @@
 // Usuarios
+
+//obtener una lista de todos los usuarios
 const getUsuarios = () => {
     //localStorage.clear();
     var usuarios = JSON.parse(localStorage.getItem("usuarios"));
@@ -12,6 +14,7 @@ const getUsuarios = () => {
 };
 
 
+//retorno un usuario si alguna cedula coincide
 const getUsuario = (cedula) => {
 
     var usuarios = getUsuarios();
@@ -26,7 +29,7 @@ const getUsuario = (cedula) => {
     return null;
 };
 
-
+//actualizo la contrasenia de usuario (en caso de restablecimiento
 const actualizarContraseniaUsuario = (cedula,  newContrasenia) => {
 
     console.log(cedula, "cedula que me llega a actualizar");
@@ -56,6 +59,7 @@ const actualizarContraseniaUsuario = (cedula,  newContrasenia) => {
 
 
 // Medicos 
+//retorno una lista de medicos
 const getMedicos = () => {      
 
     medicos = [
@@ -167,7 +171,7 @@ const getMedicos = () => {
 
 };
 
-
+// retorno un medico si hay alguna coincidencia con la cedula
 const getMedico = (cedula) => {
 
     var medicos = getMedicos();
@@ -182,7 +186,7 @@ const getMedico = (cedula) => {
     return null;
 };
 
-
+// actualizo la contrasenia en caso de restablecimiento
 const actualizarContraseniaMedico = (cedula,  newContrasenia) => {
 
     console.log(cedula, "cedula que me llega a actualizar");
@@ -210,6 +214,8 @@ const actualizarContraseniaMedico = (cedula,  newContrasenia) => {
 
 
 // citas
+
+// obtengo una lista de citas
 const getCitas = () => {
 
     //localStorage.clear();
@@ -223,7 +229,7 @@ const getCitas = () => {
 };
 
 
-
+//obtengo todas las citas de un usurio
 const getCitasUsuario = (cedula, fecha) => {
 
     var citas = getCitas();
@@ -241,7 +247,7 @@ const getCitasUsuario = (cedula, fecha) => {
 
 };
 
-
+//obtengo una cita por el id
 const getCitaById = (id) => {
 
     var citas = getCitas();
@@ -257,7 +263,7 @@ const getCitaById = (id) => {
 
 };
 
-
+//verifico la existencia de cita en fecha y hora
 const verificarExistenciaCitaEseDiaUsuario = (cedula, fecha) => {
 
     var citas = getCitas();
@@ -273,7 +279,7 @@ const verificarExistenciaCitaEseDiaUsuario = (cedula, fecha) => {
 
 };
 
-
+//retorna una lista de todas las citas del medico
 const getCitasMedico = (cedula, fecha) => {
 
     var citas = getCitas();
@@ -292,7 +298,7 @@ const getCitasMedico = (cedula, fecha) => {
 };
 
 
-
+//verifico la existencia de cita en fecha y hora
 const verificarExistenciaCitaEseDiaMedico = (cedula, fecha) => {
 
     var citas = getCitas();
@@ -309,7 +315,7 @@ const verificarExistenciaCitaEseDiaMedico = (cedula, fecha) => {
 
 };
 
-
+// agrega una nueva cita
 const setCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
 
     var citas = getCitas();
@@ -342,7 +348,7 @@ const setCita = (usuarioCedula,fecha, hora, especialidad, cedulaMedico) => {
 
 
 
-// en proceso
+// actualiza la cita segun los parametros
 const updateCita = (idCita,  hora, especialidad, cedulaMedico) => {
 
     console.log(idCita, "id que me llega");
@@ -371,7 +377,7 @@ const updateCita = (idCita,  hora, especialidad, cedulaMedico) => {
 
 
 
-
+// verifica el horario de cita
 const verifcarHorarioDeCita = (fecha, hora, medico ) => {
 
     //validar que no agende citas a la misma hora del mismo dia, asi sea con otro medico
@@ -390,7 +396,7 @@ const verifcarHorarioDeCita = (fecha, hora, medico ) => {
 };
 
 
-
+//actualiza el estado  de la cita
 const actualizarEstadoCita = (id) => {
 
     var citas = getCitas();
@@ -421,7 +427,7 @@ const actualizarEstadoCita = (id) => {
 };
 
 
-
+// eliminar la cita segun el id
 const eliminarCita = (id) => {
 
     var citas = getCitas();
@@ -449,6 +455,7 @@ const eliminarCita = (id) => {
 
 // userSessionSessionStorage y userSessionLocalStorage
 
+// obtengo la variable de sesion del storage
 const getSessionStorageUser = () => {
 
     var userSessionSessionStorage = []; 
@@ -458,7 +465,7 @@ const getSessionStorageUser = () => {
 
 };
 
-
+// obtengo la variable de sesion del local storage
 const getLocalStorageUser = () => {
 
     var userLocalSessionStorage = []; 
@@ -483,6 +490,7 @@ const getIndentificadorCita = () => {
     }
 };
 
+//incrementa el contador del generador
 const incrementarIndentificadorCita = () => {
     var identificadorCita = JSON.parse(localStorage.getItem("identificadorCita"));
     var nuevoIdentificador = identificadorCita.id +1;

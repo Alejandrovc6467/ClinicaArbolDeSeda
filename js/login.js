@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 
 
-
+//obtener los datos del formulario
 const getDatosFormulario = ()=>{
 
     const cedula = document.getElementById("cedula").value.trim();
@@ -57,7 +57,7 @@ document.getElementById("cedula").addEventListener("input", function() {
 
 
 
-
+//verificar Login
 const verificarLogin = (cedula, contrasenia)=>{
 
     var contraseniaHash = encriptarPassword(contrasenia);
@@ -85,9 +85,7 @@ const verificarLogin = (cedula, contrasenia)=>{
 };
 
 
-
-
-
+// inicio de sesion exitoso, se invoca si todo sale bien al momento del logueo
 const inicioSesionExitoso = (cedula)=>{
 
     const sesionUser = {
@@ -98,11 +96,11 @@ const inicioSesionExitoso = (cedula)=>{
  
     sessionStorage.setItem("sesionUser", JSON.stringify(sesionUser));
 
-    window.location.href = 'agendarCita.html';
+    window.location.href = 'agendarCita.html';// redireciono a agendarcita
    
 };
 
-
+//se invoca si hay un error en l sessio
 const errorInicioSesion = ()=>{
     //aqui deberia de hacer la logica de inicios de sesion fallidos, revisar primero si esa cedula existe
     mostrarModalNotificacion("Datos incorrectos");
